@@ -9,18 +9,23 @@
     "web": "DARK_MODE=media expo start --web"
   },
   "dependencies": {
+    "@gluestack-ui/button": "^1.0.14",
     "@gluestack-ui/icon": "^0.1.27",
     "@gluestack-ui/nativewind-utils": "^1.0.26",
     "@gluestack-ui/overlay": "^0.1.22",
+    "@gluestack-ui/themed": "^1.1.73",
     "@gluestack-ui/toast": "^1.0.9",
     "@react-navigation/native": "^7.1.14",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
     "babel-plugin-module-resolver": "^5.0.2",
+    "babel-plugin-root-import": "^6.6.0",
     "button": "^1.1.1",
     "expo": "~53.0.20",
     "expo-status-bar": "~2.2.3",
     "gluestack-ui": "^0.7.22",
     "nativewind": "^4.1.23",
-    "react": "19.0.0",
+    "prettier": "^3.6.2",
+    "react": "19.1.0",
     "react-dom": "^19.1.0",
     "react-native": "0.79.5",
     "react-native-css-interop": "^0.1.22",
@@ -33,6 +38,7 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@types/react": "~19.0.10",
+    "babel-plugin-inline-dotenv": "^1.7.0",
     "jscodeshift": "0.15.2",
     "typescript": "~5.8.3"
   },
