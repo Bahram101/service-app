@@ -1,7 +1,5 @@
-import { StatusBar } from 'expo-status-bar'
 import { Text, View } from 'react-native'
 
-import { Button, ButtonText } from '@/components/ui/button'
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
 
 import './global.css'
@@ -9,12 +7,8 @@ import './global.css'
 export default function App() {
   return (
     <GluestackUIProvider mode='light'>
-      <View className='flex-1 items-center justify-center bg-background'>
-        <Text>Open app.tsx !</Text>
-        <StatusBar style='auto' />
-        <Button action="primary" variant="solid" size="md">
-          <ButtonText>Нажми</ButtonText>
-        </Button>
+      <View className='flex flex-col items-center justify-center bg-red-100 h-full'>
+        <Text className='bg-blue-100'>Open app.tsx!</Text>
       </View>
     </GluestackUIProvider>
   )

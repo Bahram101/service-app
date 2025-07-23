@@ -1270,7 +1270,7 @@
     "@react-native-aria/focus" "^0.2.9"
     "@react-native-aria/interactions" "0.2.16"
 
-"@gluestack-ui/input@0.1.38":
+"@gluestack-ui/input@0.1.38", "@gluestack-ui/input@^0.1.38":
   version "0.1.38"
   resolved "https://registry.yarnpkg.com/@gluestack-ui/input/-/input-0.1.38.tgz#8430b5f4901e59475a99d5e3f473bd5b0d248a19"
   integrity sha512-NzwDOXkkMYzBQ0h7UnhKA2h54/qlxDxMFGXykkmYOl7mc7QJc1aJaveo4yMHtpYvcQG17xLyD+Z+5CQYA76nvw==
