@@ -10,9 +10,9 @@ export default function App() {
   return (
     <GluestackUIProvider mode='light'>
       <View className='flex-1 items-center justify-center bg-background'>
-        <Text>Open apppp.tsx !</Text>
+        <Text>Open app.tsx !</Text>
         <StatusBar style='auto' />
-        <Button size='md' variant='solid' action='primary' isDisabled={false} className='p-3'>
+        <Button action="primary" variant="solid" size="md">
           <ButtonText>Нажми</ButtonText>
         </Button>
       </View>
