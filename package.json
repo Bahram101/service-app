@@ -30,6 +30,7 @@
     "prettier": "^3.6.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
+    "react-hook-form": "^7.61.0",
     "react-native": "0.79.5",
     "react-native-css-interop": "^0.1.22",
     "react-native-reanimated": "^3.18.0",
