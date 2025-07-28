@@ -76,7 +76,11 @@ const Auth = () => {
                       isDisabled={false}
                     >
                       <CheckboxIndicator className='w-6 h-6 border border-gray-400 rounded-md justify-center items-center'>
-                        <CheckboxIcon as={CheckIcon} className='w-4 h-4 text-primary' style={{ fill: 'none' }} />
+                        <CheckboxIcon
+                          as={CheckIcon}
+                          className='w-4 h-4 text-primary'
+                          style={{ fill: 'none' }}
+                        />
                       </CheckboxIndicator>
 
                       <CheckboxLabel className='text-primary '>
