@@ -1,9 +1,11 @@
 import cn from 'clsx'
+import { JSX } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { Input, InputField } from '../input'
 
 import { IField } from './field.interface'
+import { Text } from 'react-native'
 
 export const Field = <T extends Record<string, any>>({
   control,
@@ -11,7 +13,7 @@ export const Field = <T extends Record<string, any>>({
   name,
   className,
   ...rest
-}: IField<T>) => {
+}: IField<T>): JSX.Element => {
   return (
     <Controller
       control={control}
@@ -22,22 +24,25 @@ export const Field = <T extends Record<string, any>>({
         fieldState: { error }
       }) => {
         return (
-          <Input
-            className={cn(
-              'mt-4 rounded-3xl h-[45px] px-1',
-              error ? 'border-red-400' : 'border-[#D6D1D2]',
-              className
-            )}
-          >
-            <InputField
-              placeholderTextColor='#fff'
-              autoCapitalize='none'
-              onBlur={onBlur}
-              value={(value || '').toString()}
-              onChangeText={onChange}
-              {...rest}
-            />
-          </Input>
+          <>
+            <Input
+              className={cn(
+                'mt-4 rounded-3xl h-[45px] px-1',
+                error ? 'border-red-400' : 'border-[#D6D1D2]',
+                className
+              )}
+            >
+              <InputField
+                placeholderTextColor='#fff'
+                autoCapitalize='none'
+                onBlur={onBlur}
+                value={(value || '').toString()}
+                onChangeText={onChange}
+                {...rest}
+              />
+            </Input>
+            {error && <Text className='text-red-400 pl-4'>{error.message}</Text>}
+          </>
         )
       }}
     />

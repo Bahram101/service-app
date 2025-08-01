@@ -4,11 +4,11 @@ import Home from "@/components/screens/home/Home";
 
 export const routes: IRoute[] = [
   {
-    name: 'Auth',
-    component: Auth
-  },
-  {
     name: 'Home',
     component: Home
-  }
+  },
+  // {
+  //   name: 'Auth',
+  //   component: Auth
+  // },
 ]

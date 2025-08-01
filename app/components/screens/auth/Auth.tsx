@@ -1,14 +1,6 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  ScrollView,
-  Text,
-  TouchableWithoutFeedback,
-  View
-} from 'react-native'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Loader } from '@/components/ui/Loader'
@@ -27,12 +19,15 @@ import { IAuthFormData } from '@/types/auth.interface'
 
 const Auth = () => {
   const [isReg, setIsReg] = useState(false)
-  const [checked, setChecked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  const { control } = useForm<IAuthFormData>({
+  const { control, reset, handleSubmit } = useForm<IAuthFormData>({
     mode: 'onChange'
   })
+
+  const onSubmit: SubmitHandler<IAuthFormData> = data => {
+    console.log(data)
+  }
 
   return (
     <KeyboardAwareScrollView
@@ -54,10 +49,10 @@ const Auth = () => {
 
                 <Field<IAuthFormData>
                   placeholder='Введите логин'
-                  keyboardType='email-address'
+                  // keyboardType='email-address'
                   control={control}
-                  name='email'
-                  rules={{ required: 'Email is required!' }}
+                  name='login'
+                  rules={{ required: 'Login is required!' }}
                 />
 
                 <Field<IAuthFormData>
@@ -65,11 +60,14 @@ const Auth = () => {
                   control={control}
                   name='password'
                   secureTextEntry
-                  rules={{ required: 'Password is required!' }}
+                  rules={{ required: 'Password is required!', minLength: {
+                    value: 6,
+                    message:'Please enter at least 6 characters'
+                  } }}
                 />
 
                 <View className='items-center mt-4'>
-                  <CheckboxGroup>
+                  <CheckboxGroup value={[]}>
                     <Checkbox
                       value='accept'
                       isInvalid={false}
@@ -91,7 +89,10 @@ const Auth = () => {
                 </View>
 
                 <View className='items-center'>
-                  <CustomBtn className='rounded-3xl mt-4 h-[45px] w-[150px]'>
+                  <CustomBtn
+                    className='rounded-3xl mt-4 h-[45px] w-[150px]'
+                    onPress={handleSubmit(onSubmit)}
+                  >
                     Войти
                   </CustomBtn>
                 </View>
