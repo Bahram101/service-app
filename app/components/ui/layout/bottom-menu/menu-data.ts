@@ -7,18 +7,17 @@ export const menuItems: IMenuItem[] = [
   },
   {
     iconName: 'edit',
-    path: ''
+    path: 'Requests'
   },
   {
     iconName: 'shopping-bag',
-    path: ''
+    path: 'Equipment'
   },
   {
     iconName: 'pie-chart',
-    path: 'Profile'
+    path: 'Reports'
   },
   {
-    iconName: 'more-horizontal',
-    path: ''
+    iconName: 'more-horizontal'
   }
 ]

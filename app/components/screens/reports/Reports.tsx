@@ -3,12 +3,12 @@ import { Text, View } from 'react-native'
 
 type Props = {}
 
-const Requests = (props: Props) => {
+const Reports = (props: Props) => {
   return (
     <View>
-      <Text>Reaquests</Text>
+      <Text>Reports</Text>
     </View>
   )
 }
 
-export default Requests
+export default Reports

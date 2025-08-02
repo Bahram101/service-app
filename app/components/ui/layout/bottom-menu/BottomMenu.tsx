@@ -1,12 +1,27 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Text, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-type Props = {}
+import MenuItem from './MenuItem'
+import { menuItems } from './menu-data'
+import { TypeNavigate } from './menu.interface'
 
-const BottomMenu = (props: Props) => {
+interface IButtonMenu {
+  nav: TypeNavigate
+  currentRoute?: string
+}
+
+const BottomMenu: FC<IButtonMenu> = props => {
+  const { bottom } = useSafeAreaInsets()
+
   return (
-    <View>
-      <Text>BottomMenu</Text>
+    <View
+      className='flex-row border-t border-t-[#bbbbbb] pt-4'
+      style={{ paddingBottom: bottom + 20 }}
+    >
+      {menuItems.map(item => (
+        <MenuItem key={item.iconName} item={item} {...props} />
+      ))}
     </View>
   )
 }

@@ -1,5 +1,7 @@
-import Auth from '@/components/screens/auth/Auth'
+import Equipment from '@/components/screens/equipment/Equipment'
 import Home from '@/components/screens/home/Home'
+import Reports from '@/components/screens/reports/Reports'
+import Requests from '@/components/screens/requests/requests'
 
 import { IRoute } from './navigation.types'
 
@@ -9,15 +11,15 @@ export const routes: IRoute[] = [
     component: Home
   },
   {
-    name: 'Cart',
-    component: Cart
+    name: 'Requests',
+    component: Requests
   },
   {
-    name: 'Category',
-    component: Category
+    name: 'Equipment',
+    component: Equipment
   },
   {
-    name: 'Product',
-    component: Product
+    name: 'Reports',
+    component: Reports
   }
 ]

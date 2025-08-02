@@ -3,5 +3,7 @@ import { TypeFeatherIconNames } from "@/types/icon.interface";
 
 export interface IMenuItem {
   iconName: TypeFeatherIconNames
-  path: keyof TypeRootStackParamList
+  path?: keyof TypeRootStackParamList
 }
+
+export type TypeNavigate = (screen: keyof TypeRootStackParamList) => void;
