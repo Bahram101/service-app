@@ -9,8 +9,8 @@ import {
 
 import { IContext, TypeUserState } from './auth-provider.interface'
 
-// export const AuthContext = createContext({} as IContext)
-export const AuthContext = createContext<IContext | null>(null)
+export const AuthContext = createContext({} as IContext)
+// export const AuthContext = createContext<IContext | null>(null)
 
 let ignore = SplashScreen.preventAutoHideAsync()
 
