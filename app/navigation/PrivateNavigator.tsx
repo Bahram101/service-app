@@ -6,7 +6,7 @@ import Auth from '@/components/screens/auth/Auth'
 import { useAuth } from '@/hooks/useAuth'
 
 import { TypeRootStackParamList } from './navigation.types'
-import { routes } from './routes' 
+import { routes } from './routes'
 
 type Props = {}
 const Stack = createNativeStackNavigator<TypeRootStackParamList>()

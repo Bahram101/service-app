@@ -1,6 +1,7 @@
 import { Feather } from '@expo/vector-icons'
-import React, { FC } from 'react'
-import { Pressable } from 'react-native'
+import cn from 'clsx'
+import React, { FC, memo } from 'react'
+import { Pressable, View } from 'react-native'
 
 import { IMenuItem, TypeNavigate } from './menu.interface'
 import { COLORS } from '@/constants/colors'
@@ -11,21 +12,36 @@ interface MenuItemProps {
   currentRoute?: string
 }
 
-const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
+const MenuItem: FC<MenuItemProps> = memo(({ item, nav, currentRoute }) => {
   const isActive = currentRoute === item.path
+  console.log('menu')
+  console.log('item',item)
 
   return (
     <Pressable
-      onPress={() => (item.path ? nav(item.path) : null)}
-      className='items-center w-[20%]'
+      onPress={() => {
+        if (item.path && item.path !== currentRoute) {
+          nav(item.path)
+        }
+      }}
+      className='w-[20%] h-[70px]'
     >
-      <Feather
-        name={item.iconName}
-        size={26}
-        color={isActive ? COLORS.primary : COLORS.gray}
-      />
+      {({ pressed }) => (
+        <View
+          className={cn(
+            'flex justify-center items-center h-full',
+            pressed ? 'bg-gray-100' : 'bg-transparent'
+          )}
+        >
+          <Feather
+            name={item.iconName}
+            size={26}
+            color={isActive ? COLORS.primary : COLORS.gray}
+          />
+        </View>
+      )}
     </Pressable>
   )
-}
+})
 
 export default MenuItem
