@@ -8,7 +8,8 @@ import BottomMenu from '@/components/ui/layout/bottom-menu/BottomMenu'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import PrivateNavigator from './PrivateNavigator'
+import PrivateNavigator from './PrivateNavigator' 
+import { AuthService } from '@/services/auth/auth.service'
 
 const Navigation = () => {
   const { user } = useAuth()
@@ -16,11 +17,10 @@ const Navigation = () => {
     undefined
   )
   const navRef = useNavigationContainerRef()
-  console.log('navRef', navRef)
 
   useEffect(() => {
     // setCurrentRoute(navRef.getCurrentRoute()?.name)
-
+    // AuthService.logout()
     const listener = navRef.addListener('state', () =>
       setCurrentRoute(navRef.getCurrentRoute()?.name)
     )
@@ -31,6 +31,7 @@ const Navigation = () => {
   }, [])
 
   console.log('currentRoute', currentRoute)
+  console.log('user', user)
 
   return (
     <>

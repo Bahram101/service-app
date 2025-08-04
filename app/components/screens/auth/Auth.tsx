@@ -16,17 +16,20 @@ import { Field } from '@/components/ui/field/Field'
 import { CheckIcon } from '@/components/ui/icon'
 
 import { IAuthFormData } from '@/types/auth.interface'
+import { useAuthMutations } from './useAuthMutation'
 
 const Auth = () => {
-  const [isReg, setIsReg] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isReg, setIsReg] = useState(false) 
 
   const { control, reset, handleSubmit } = useForm<IAuthFormData>({
     mode: 'onChange'
   })
 
+  const { loginSync, isLoading } = useAuthMutations(reset)
+
   const onSubmit: SubmitHandler<IAuthFormData> = data => {
     console.log(data)
+    loginSync(data)
   }
 
   return (
@@ -44,14 +47,14 @@ const Auth = () => {
             ) : (
               <>
                 <Text className='text-2xl text-center mb-4'>
-                  {isReg ? 'Sign up' : 'Sign in'}
+                  Sign in
                 </Text>
 
                 <Field<IAuthFormData>
                   placeholder='Введите логин'
-                  // keyboardType='email-address'
+                  keyboardType='email-address'
                   control={control}
-                  name='login'
+                  name='email'
                   rules={{ required: 'Login is required!' }}
                 />
 
@@ -67,7 +70,7 @@ const Auth = () => {
                 />
 
                 <View className='items-center mt-4'>
-                  <CheckboxGroup value={[]}>
+                  <CheckboxGroup >
                     <Checkbox
                       value='accept'
                       isInvalid={false}

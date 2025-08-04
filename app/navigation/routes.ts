@@ -21,5 +21,5 @@ export const routes: IRoute[] = [
   {
     name: 'Reports',
     component: Reports
-  }
+  },
 ]
