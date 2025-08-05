@@ -14,8 +14,8 @@ interface MenuItemProps {
 
 const MenuItem: FC<MenuItemProps> = memo(({ item, nav, currentRoute }) => {
   const isActive = currentRoute === item.path
-  console.log('menu')
-  console.log('item',item)
+  // console.log('menu')
+  // console.log('item',item)
 
   return (
     <Pressable

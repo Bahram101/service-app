@@ -14,15 +14,13 @@ interface IButtonMenu {
 const BottomMenu: FC<IButtonMenu> = props => {
   const { bottom } = useSafeAreaInsets()
 
-  console.log('bottomMenu')
-
   return (
     <View
       className='flex-row border-t border-t-[#bbbbbb]'
       style={{ paddingBottom: bottom  }}
     >
       {menuItems.map((item, index) => (
-        <MenuItem key={item.iconName} item={item} {...props} />
+        <MenuItem key={index} item={item} {...props} />
       ))}
     </View>
   )

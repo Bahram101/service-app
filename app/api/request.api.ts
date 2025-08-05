@@ -5,9 +5,11 @@ import { errorCatch } from './error.api'
 import instance from './interceptor.api'
 
 export const request = async <T>(config: AxiosRequestConfig) => {
-  const onSuccess = (response: AxiosResponse<T>) => response.data
+  const onSuccess = (response: AxiosResponse<T>) => {
+    return response.data
+  }
 
-  const onError = (error: AxiosError<T>) => {
+  const onError = (error: AxiosError<T>) => { 
     Toast.show({
       type: 'error',
       text1: 'Request error',

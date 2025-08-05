@@ -6,6 +6,7 @@ export type TypeRootStackParamList = {
   Requests: undefined
   Equipment: undefined
   Reports: undefined 
+  Profile: undefined 
 }
 
 export interface IRoute {

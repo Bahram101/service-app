@@ -4,8 +4,12 @@ import { IUser } from './user.interface'
 //   login: string
 // }
 
-export type IAuthFormData = Pick<IUser, 'password'> & {
+// export type IAuthFormData = Pick<IUser, 'password'> & {
+//   email: string
+// }
+export type IAuthFormData = {
   email: string
+  password: string
 }
 
 export enum EnumSecureStore {

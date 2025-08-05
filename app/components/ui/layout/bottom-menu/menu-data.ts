@@ -17,7 +17,11 @@ export const menuItems: IMenuItem[] = [
     iconName: 'pie-chart',
     path: 'Reports'
   },
+  // {
+  //   iconName: 'more-horizontal'
+  // }
   {
-    iconName: 'more-horizontal'
+    iconName: 'user',
+    path: 'Profile'
   }
 ]

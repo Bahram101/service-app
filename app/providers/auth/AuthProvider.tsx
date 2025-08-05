@@ -7,7 +7,7 @@ import {
   useEffect,
   useState
 } from 'react'
-import { useNavigation, useNavigationContainerRef } from '@react-navigation/native'
+import { useNavigationContainerRef } from '@react-navigation/native'
 
 import { IUser } from '@/types/user.interface'
 
@@ -29,13 +29,14 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const checkAccessToken = async () => {
       try {
         const accessToken = await getAccessToken()
-        console.log('accessToken', accessToken)
+
         if (accessToken) {
           const user = await getUserFromStorage()
           if (isMounted) {
             setUser(user)
           }
         }else{
+          console.log('user null')
           setUser(null)
         }
       } catch (e) {
@@ -44,8 +45,8 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
       }
     }
     let ignore = checkAccessToken()
-    return () => {
-      // вызывается при размонтировании компонента
+
+    return () => { // вызывается при размонтировании компонента     
       isMounted = false // предотвращает обновление состояния после размонтирования
     }
   }, [])

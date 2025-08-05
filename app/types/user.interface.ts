@@ -1,8 +1,6 @@
 export interface IUser {
-  id: string
-  name: string
-  email: string
-  password: string
-  avatarPath: string
-  favorites: any[]
+  email: 'azoka88@mail.ru'
+  user_id: 1
+  staff_id: 10734
+  user_full_name: 'Kartabayev  Azamat Sembekovich'
 }

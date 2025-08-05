@@ -1,5 +1,6 @@
 import Equipment from '@/components/screens/equipment/Equipment'
 import Home from '@/components/screens/home/Home'
+import Profile from '@/components/screens/Profile/Profile'
 import Reports from '@/components/screens/reports/Reports'
 import Requests from '@/components/screens/requests/requests'
 
@@ -22,4 +23,8 @@ export const routes: IRoute[] = [
     name: 'Reports',
     component: Reports
   },
+  {
+    name: 'Profile',
+    component: Profile
+  }
 ]

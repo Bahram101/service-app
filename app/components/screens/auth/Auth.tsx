@@ -19,17 +19,18 @@ import { IAuthFormData } from '@/types/auth.interface'
 import { useAuthMutations } from './useAuthMutation'
 
 const Auth = () => {
-  const [isReg, setIsReg] = useState(false) 
-
   const { control, reset, handleSubmit } = useForm<IAuthFormData>({
-    mode: 'onChange'
+    mode: 'onChange',
+    defaultValues: {
+      email:'azoka88@mail.ru',
+      password:'Almaty2020'
+    }
   })
 
   const { loginSync, isLoading } = useAuthMutations(reset)
 
   const onSubmit: SubmitHandler<IAuthFormData> = data => {
-    console.log(data)
-    loginSync(data)
+    loginSync(data) 
   }
 
   return (
@@ -50,7 +51,7 @@ const Auth = () => {
                   Sign in
                 </Text>
 
-                <Field<IAuthFormData>
+                <Field<IAuthFormData> 
                   placeholder='Введите логин'
                   keyboardType='email-address'
                   control={control}

@@ -28,6 +28,7 @@ export const getUserFromStorage = async () => {
 }
 
 export const saveTokensToStorage = async (data: ITokens) => {
+  console.log('ddd',data)
   await setItemAsync(EnumSecureStore.ACCESS_TOKEN, data.accessToken)
   await setItemAsync(EnumSecureStore.REFRESH_TOKEN, data.refreshToken)
 }

@@ -8,8 +8,6 @@ import BottomMenu from '@/components/ui/layout/bottom-menu/BottomMenu'
 
 import { useAuth } from '@/hooks/useAuth'
 
-import { AuthService } from '@/services/auth/auth.service'
-
 import PrivateNavigator from './PrivateNavigator'
 
 const Navigation = () => {
@@ -41,7 +39,7 @@ const Navigation = () => {
   )
 
   // console.log('currentRoute', currentRoute)
-  // console.log('user', user)
+  console.log('userAuth', user)
   // console.log('navRef', navRef)
 
   return (
