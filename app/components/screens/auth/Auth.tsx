@@ -22,7 +22,7 @@ const Auth = () => {
   const { control, reset, handleSubmit } = useForm<IAuthFormData>({
     mode: 'onChange',
     defaultValues: {
-      email:'azoka88@mail.ru',
+      username:'azamat',
       password:'Almaty2020'
     }
   })
@@ -32,8 +32,6 @@ const Auth = () => {
   const onSubmit: SubmitHandler<IAuthFormData> = data => {
     loginSync(data) 
   }
-
-  console.log('isLoading',isLoading)
 
   return (
     <KeyboardAwareScrollView
@@ -57,7 +55,7 @@ const Auth = () => {
                   placeholder='Введите логин'
                   keyboardType='email-address'
                   control={control}
-                  name='email'
+                  name='username'
                   rules={{ required: 'Login is required!' }}
                 />
 

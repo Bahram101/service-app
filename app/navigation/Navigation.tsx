@@ -18,8 +18,6 @@ const Navigation = () => {
   const navRef = useNavigationContainerRef()
 
   useEffect(() => {
-    // setCurrentRoute(navRef.getCurrentRoute()?.name)
-    // AuthService.logout()
     const listener = navRef.addListener('state', () =>
       setCurrentRoute(navRef.getCurrentRoute()?.name)
     )

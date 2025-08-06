@@ -8,7 +8,7 @@ import { IUser } from './user.interface'
 //   email: string
 // }
 export type IAuthFormData = {
-  email: string
+  username: string
   password: string
 }
 

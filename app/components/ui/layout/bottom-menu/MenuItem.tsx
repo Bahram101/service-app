@@ -12,15 +12,13 @@ interface MenuItemProps {
   currentRoute?: string
 }
 
-const MenuItem: FC<MenuItemProps> = memo(({ item, nav, currentRoute }) => {
+const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
   const isActive = currentRoute === item.path
-  // console.log('menu')
-  // console.log('item',item)
 
   return (
     <Pressable
       onPress={() => {
-        if (item.path && item.path !== currentRoute) {
+        if (item.path && !isActive) {
           nav(item.path)
         }
       }}
@@ -42,6 +40,6 @@ const MenuItem: FC<MenuItemProps> = memo(({ item, nav, currentRoute }) => {
       )}
     </Pressable>
   )
-})
+}
 
 export default MenuItem

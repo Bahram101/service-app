@@ -11,38 +11,35 @@ import {
 } from './auth.helper'
 
 export const AuthService = {
-  async login(email: string, password: string) {
-    const body = new URLSearchParams({
-      username: email,
-      password,
-      grant_type: 'password'
-    }).toString()
+  async login(username: string, password: string) {
+    try {
+      const body = new URLSearchParams({
+        username,
+        password,
+        grant_type: 'password'
+      }).toString()
 
-    return await fetch(`${API_URL}/oauth/token`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
-      },
-      body: body
-    })
-      .then(response => {
-        console.log('NONO')
-        if (!response.ok) {
-          console.log('ERROR')
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-        return response.json()
+      const response = await fetch(`${API_URL}/oauth/token`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
+        },
+        body: body
       })
-      .then(async data => {
-        if (data.access_token) {
-          await saveToStorage(data)
-        }
-        return data
-      })
-      .catch(error => {
-        console.log('Error occurred:', error.message)
-      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      const data = await response.json()
+
+      if (data.access_token) {
+        await saveToStorage(data)
+      }
+      return data
+    } catch (error) {
+      throw error
+    }
   },
 
   async logout() {

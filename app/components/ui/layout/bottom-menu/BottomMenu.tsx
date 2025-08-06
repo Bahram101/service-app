@@ -17,11 +17,12 @@ const BottomMenu: FC<IButtonMenu> = props => {
   return (
     <View
       className='flex-row border-t border-t-[#bbbbbb]'
-      style={{ paddingBottom: bottom  }}
+      style={{ paddingBottom: bottom }}
     >
-      {menuItems.map((item, index) => (
-        <MenuItem key={index} item={item} {...props} />
-      ))}
+      {menuItems.map((item, index) => {
+        console.log('props',props)
+        return <MenuItem key={index} item={item} {...props} />
+      })}
     </View>
   )
 }

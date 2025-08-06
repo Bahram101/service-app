@@ -18,7 +18,7 @@ import { IContext, TypeUserState } from './auth-provider.interface'
 export const AuthContext = createContext({} as IContext)
 // export const AuthContext = createContext<IContext | null>(null)
 
-let ignore = SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync()
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
   const [user, setUser] = useState<TypeUserState>({} as IUser)
@@ -42,7 +42,8 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
         await SplashScreen.hideAsync()
       }
     }
-    let ignore = checkAccessToken()
+    
+    checkAccessToken()
 
     return () => {
       // вызывается при размонтировании компонента
