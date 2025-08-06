@@ -1,6 +1,5 @@
 import { useNavigationContainerRef } from '@react-navigation/native'
 import * as SplashScreen from 'expo-splash-screen'
-import { get } from 'node_modules/axios/index.cjs'
 import {
   FC,
   PropsWithChildren,
@@ -18,11 +17,10 @@ import { IContext, TypeUserState } from './auth-provider.interface'
 export const AuthContext = createContext({} as IContext)
 // export const AuthContext = createContext<IContext | null>(null)
 
-SplashScreen.preventAutoHideAsync()
-
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
   const [user, setUser] = useState<TypeUserState>({} as IUser)
-  const navRef = useNavigationContainerRef()
+  const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     let isMounted = true
 
@@ -39,10 +37,11 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
         }
       } catch (e) {
       } finally {
+        setIsLoading(false)
         await SplashScreen.hideAsync()
       }
     }
-    
+
     checkAccessToken()
 
     return () => {
@@ -50,6 +49,8 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
       isMounted = false // предотвращает обновление состояния после размонтирования
     }
   }, [])
+
+  if (isLoading) return null
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

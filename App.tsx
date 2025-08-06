@@ -4,7 +4,7 @@ import { View } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import Toast from 'react-native-toast-message'
 
-import Home from '@/components/screens/home/Home'
+import * as SplashScreen from 'expo-splash-screen'
 import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider'
 
 import AuthProvider from '@/providers/auth/AuthProvider'
@@ -20,7 +20,7 @@ const queryClient = new QueryClient({
     }
   }
 })
-
+SplashScreen.preventAutoHideAsync()
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
