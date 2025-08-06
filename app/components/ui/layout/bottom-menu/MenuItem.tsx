@@ -42,4 +42,4 @@ const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
   )
 }
 
-export default MenuItem
+export default memo(MenuItem)

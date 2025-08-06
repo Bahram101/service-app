@@ -20,8 +20,14 @@ const BottomMenu: FC<IButtonMenu> = props => {
       style={{ paddingBottom: bottom }}
     >
       {menuItems.map((item, index) => {
-        console.log('props',props)
-        return <MenuItem key={index} item={item} {...props} />
+        return (
+          <MenuItem
+            key={index}
+            item={item}
+            currentRoute={props.currentRoute}
+            nav={props.nav}
+          />
+        )
       })}
     </View>
   )
