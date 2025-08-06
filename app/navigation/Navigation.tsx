@@ -39,7 +39,7 @@ const Navigation = () => {
   )
 
   // console.log('currentRoute', currentRoute)
-  console.log('userAuth', user)
+  // console.log('userAuth', user)
   // console.log('navRef', navRef)
 
   return (
@@ -52,7 +52,7 @@ const Navigation = () => {
       >
         <PrivateNavigator />
       </NavigationContainer>
-      {user && currentRoute && (
+      {user?.user_id && currentRoute && (
         <BottomMenu nav={handleNavigate} currentRoute={currentRoute} />
       )}
     </>

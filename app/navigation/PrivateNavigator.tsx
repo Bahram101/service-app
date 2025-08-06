@@ -21,7 +21,7 @@ const PrivateNavigator = (props: Props) => {
         contentStyle: { backgroundColor: '#fff' }
       }}
     >
-      {user ? (
+      {user?.user_id ? (
         routes.map(route => <Stack.Screen key={route.name} {...route} />)
       ) : (
         <Stack.Screen name='Auth' component={Auth} />

@@ -1,9 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import {
-  deleteItemAsync,
-  getItemAsync,
-  setItemAsync
-} from 'expo-secure-store'
+import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store'
 
 import {
   EnumAsyncStorage,
@@ -28,9 +24,8 @@ export const getUserFromStorage = async () => {
 }
 
 export const saveTokensToStorage = async (data: ITokens) => {
-  console.log('ddd',data)
-  await setItemAsync(EnumSecureStore.ACCESS_TOKEN, data.accessToken)
-  await setItemAsync(EnumSecureStore.REFRESH_TOKEN, data.refreshToken)
+  await setItemAsync(EnumSecureStore.ACCESS_TOKEN, data.access_token)
+  await setItemAsync(EnumSecureStore.REFRESH_TOKEN, data.refresh_token)
 }
 
 export const deleteTokensFromStorage = async () => {
@@ -41,6 +36,12 @@ export const deleteTokensFromStorage = async () => {
 export const saveToStorage = async (data: IAuthResponse) => {
   await saveTokensToStorage(data)
   try {
-    await AsyncStorage.setItem(EnumAsyncStorage.USER, JSON.stringify(data.user))
+    await AsyncStorage.setItem(
+      EnumAsyncStorage.USER,
+      JSON.stringify({
+        user_full_name: data.user_full_name,
+        user_id: data.user_id
+      })
+    )
   } catch (error) {}
 }

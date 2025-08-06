@@ -1,6 +1,6 @@
 export interface IUser {
-  email: 'azoka88@mail.ru'
-  user_id: 1
-  staff_id: 10734
-  user_full_name: 'Kartabayev  Azamat Sembekovich'
+  email: string
+  user_id: number
+  staff_id: number
+  user_full_name: string
 }

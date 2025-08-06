@@ -13,8 +13,8 @@ export type IAuthFormData = {
 }
 
 export enum EnumSecureStore {
-  ACCESS_TOKEN = 'accessToken',
-  REFRESH_TOKEN = 'refreshToken'
+  ACCESS_TOKEN = 'access_token',
+  REFRESH_TOKEN = 'refresh_token'
 }
 
 export enum EnumAsyncStorage {
@@ -22,10 +22,8 @@ export enum EnumAsyncStorage {
 }
 
 export interface ITokens {
-  accessToken: string
-  refreshToken: string
+  access_token: string
+  refresh_token: string
 }
 
-export interface IAuthResponse extends ITokens {
-  user: IUser
-}
+export type IAuthResponse = ITokens & IUser

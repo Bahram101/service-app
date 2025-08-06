@@ -1,3 +1,4 @@
+import { useNavigationContainerRef } from '@react-navigation/native'
 import * as SplashScreen from 'expo-splash-screen'
 import { get } from 'node_modules/axios/index.cjs'
 import {
@@ -7,13 +8,12 @@ import {
   useEffect,
   useState
 } from 'react'
-import { useNavigationContainerRef } from '@react-navigation/native'
 
 import { IUser } from '@/types/user.interface'
 
 import { getAccessToken, getUserFromStorage } from '@/services/auth/auth.helper'
 
-import { IContext, TypeUserState } from './auth-provider.interface' 
+import { IContext, TypeUserState } from './auth-provider.interface'
 
 export const AuthContext = createContext({} as IContext)
 // export const AuthContext = createContext<IContext | null>(null)
@@ -29,14 +29,12 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const checkAccessToken = async () => {
       try {
         const accessToken = await getAccessToken()
-
         if (accessToken) {
           const user = await getUserFromStorage()
           if (isMounted) {
             setUser(user)
           }
-        }else{
-          console.log('user null')
+        } else {
           setUser(null)
         }
       } catch (e) {
@@ -46,7 +44,8 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     }
     let ignore = checkAccessToken()
 
-    return () => { // вызывается при размонтировании компонента     
+    return () => {
+      // вызывается при размонтировании компонента
       isMounted = false // предотвращает обновление состояния после размонтирования
     }
   }, [])

@@ -11,12 +11,13 @@ const Profile = () => {
   const { setUser } = useAuth()
 
   const logout = () => {
+    console.log('logout')
     AuthService.logout().then(() => setUser(null))
   }
   return (
     <View className='flex-1 items-center justify-center'>
       <Text className='mb-4'>Profile</Text>
-      <CustomBtn onPress={() => logout}>logout</CustomBtn>
+      <CustomBtn onPress={logout}>logout</CustomBtn>
     </View>
   )
 }

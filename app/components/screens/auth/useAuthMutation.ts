@@ -17,18 +17,16 @@ export const useAuthMutations = (reset: UseFormReset<IAuthFormData>) => {
       return AuthService.login(email, password)
     },
     onSuccess: data => {
-      console.log('data',data)
       reset()
       setUser(data)
     }
   })
 
-  // return { loginSync, isLoading: isPending }
   return useMemo(
     () => ({
       loginSync,
       isLoading: isPending
     }),
-    []
+    [loginSync, isPending]
   )
 }

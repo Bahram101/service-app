@@ -33,6 +33,8 @@ const Auth = () => {
     loginSync(data) 
   }
 
+  console.log('isLoading',isLoading)
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={{ flexGrow: 1 }}
