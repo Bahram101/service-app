@@ -13,12 +13,15 @@ export const useAuthMutations = (reset: UseFormReset<IAuthFormData>) => {
 
   const { mutate: loginSync, isPending } = useMutation({
     mutationKey: ['login'],
-    mutationFn: ({ username, password }: IAuthFormData) => { 
+    mutationFn: ({ username, password }: IAuthFormData) => {
       return AuthService.login(username, password)
     },
-    onSuccess: data => {
+    onSuccess: data => { 
       reset()
-      setUser(data)
+      setUser({
+        user_full_name: data.user_full_name,
+        user_id: data.user_id
+      })
     }
   })
 

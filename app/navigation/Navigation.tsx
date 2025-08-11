@@ -36,10 +36,6 @@ const Navigation = () => {
     [navRef, currentRoute]
   )
 
-  // console.log('currentRoute', currentRoute)
-  // console.log('userAuth', user)
-  // console.log('navRef', navRef)
-
   return (
     <>
       <NavigationContainer

@@ -1,20 +1,24 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { getItemAsync } from 'expo-secure-store'
 import Toast from 'react-native-toast-message'
 
+import { EnumSecureStore } from '@/types/auth.interface'
+
 import { errorCatch } from './error.api'
-import instance from './interceptor.api'
+import instance from './interceptors.api'
 
 export const request = async <T>(config: AxiosRequestConfig) => {
   const onSuccess = (response: AxiosResponse<T>) => {
     return response.data
   }
 
-  const onError = (error: AxiosError<T>) => { 
+  const onError = (error: AxiosError<T>) => {
     Toast.show({
       type: 'error',
       text1: 'Request error',
       text2: errorCatch(error)
     })
+
     return Promise.reject(error)
   }
 

@@ -1,4 +1,3 @@
-import { useNavigationContainerRef } from '@react-navigation/native'
 import * as SplashScreen from 'expo-splash-screen'
 import {
   FC,
@@ -10,47 +9,63 @@ import {
 
 import { IUser } from '@/types/user.interface'
 
-import { getAccessToken, getUserFromStorage } from '@/services/auth/auth.helper'
+import { errorCatch } from '@/services/api/error.api'
+import {
+  getAccessToken,
+  getNewTokens,
+  getUserFromStorage
+} from '@/services/auth/auth.helper'
+import { registerSetUser } from '@/services/auth/auth.helper-context'
+import { AuthService } from '@/services/auth/auth.service'
 
 import { IContext, TypeUserState } from './auth-provider.interface'
 
 export const AuthContext = createContext({} as IContext)
-// export const AuthContext = createContext<IContext | null>(null)
+
+SplashScreen.preventAutoHideAsync()
 
 const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
-  const [user, setUser] = useState<TypeUserState>({} as IUser)
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState<TypeUserState>(null)
 
   useEffect(() => {
     let isMounted = true
 
-    const checkAccessToken = async () => {
+    const initAuth = async () => {
       try {
         const accessToken = await getAccessToken()
         if (accessToken) {
-          const user = await getUserFromStorage()
-          if (isMounted) {
-            setUser(user)
+          try {
+            console.log('getNewTokens - 1')
+            await getNewTokens()
+            console.log('getNewTokens - 2') 
+            const storedUser = await getUserFromStorage()
+            if (isMounted) {
+              setUser(storedUser)
+            }
+          } catch (e) {
+            if (errorCatch(e) === 'jwt expired') {
+              await AuthService.logout()
+              if (isMounted) setUser(null)
+            }
           }
-        } else {
-          setUser(null)
         }
-      } catch (e) {
       } finally {
-        setIsLoading(false)
         await SplashScreen.hideAsync()
       }
     }
 
-    checkAccessToken()
+    initAuth()
 
     return () => {
-      // вызывается при размонтировании компонента
-      isMounted = false // предотвращает обновление состояния после размонтирования
+      isMounted = false
     }
   }, [])
 
-  if (isLoading) return null
+  useEffect(() => {
+    registerSetUser(setUser)
+  }, [])
+
+  console.log('user',user)
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>
@@ -58,5 +73,4 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     </AuthContext.Provider>
   )
 }
-
 export default AuthProvider
