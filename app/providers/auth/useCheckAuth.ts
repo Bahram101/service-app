@@ -12,6 +12,7 @@ export const useCheckAuth = (routeName?: string) => {
     const checkRefreshToken = async () => {
       const refreshToken = await getRefreshToken()
       if (!refreshToken && user) {
+        console.log('UseCheckAuth logout')
         await AuthService.logout()
         setUser(null)
       }

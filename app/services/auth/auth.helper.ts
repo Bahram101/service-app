@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store'
+import { get } from 'node_modules/axios/index.cjs'
 
 import {
   EnumAsyncStorage,
@@ -10,6 +11,7 @@ import {
 } from '@/types/auth.interface'
 
 import { API_URL } from '@/config/api.config'
+import { request } from '../api/request.api'
 
 export const getAccessToken = async () => {
   const accessToken = await getItemAsync(EnumSecureStore.ACCESS_TOKEN)
@@ -22,7 +24,7 @@ export const getRefreshToken = async () => {
 }
 
 export const getUserFromStorage = async () => {
-  console.log('GETUserFromStorage')
+  // console.log('GETUserFromStorage')
   try {
     return JSON.parse(
       (await AsyncStorage.getItem(EnumAsyncStorage.USER)) || '{}'
@@ -63,25 +65,39 @@ export const getNewTokens = async () => {
   console.log('getNewTokens')
   try {
     const refreshToken = await getRefreshToken()
-
+    
     if (!refreshToken || typeof refreshToken !== 'string') {
       throw new Error('Refresh token is missing or invalid!!')
     }
 
-    const response = await axios.post<string, { data: IAuthResponse }>(
-      API_URL + '/auth/refresh-token',
-      { refreshToken },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+    var bodyFormData = new FormData()
+    bodyFormData.set('grant_type', 'refresh_token')
+    bodyFormData.set('refresh_token', refreshToken)
+
+    // const response = await axios.post<string, { data: IAuthResponse }>(
+    //   API_URL + '/oauth/token',
+    //   bodyFormData,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'application/x-www-form-urlencoded',
+    //       Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
+    //     }
+    //   }
+    // )
+    const response = await request<IAuthResponse>({
+      method: 'POST',
+      url: API_URL + '/oauth/token',
+      data: bodyFormData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
       }
-    )
+    })
 
-    console.log('response', response)
+    // console.log('response', JSON.stringify(response, null, 2))
 
-    if (response.data.access_token)
-      await saveAccessToken(response.data.access_token)
+    if (response.access_token)
+      await saveAccessToken(response.access_token)
 
     return response
   } catch (e) {

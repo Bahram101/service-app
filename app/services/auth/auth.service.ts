@@ -43,6 +43,7 @@ export const AuthService = {
   },
 
   async logout() {
+    console.log('AuthService.logout')
     await deleteTokensFromStorage()
     await AsyncStorage.removeItem(EnumAsyncStorage.USER)
   }

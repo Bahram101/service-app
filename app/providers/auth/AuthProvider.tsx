@@ -33,21 +33,23 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const initAuth = async () => {
       try {
         const accessToken = await getAccessToken()
+        console.log('accessToken', accessToken ? 'TRUE' : 'FALSE' )
         if (accessToken) {
           try {
-            console.log('getNewTokens - 1')
             await getNewTokens()
-            console.log('getNewTokens - 2') 
             const storedUser = await getUserFromStorage()
             if (isMounted) {
               setUser(storedUser)
             }
           } catch (e) {
+            console.log('Error getting new tokens AUTH-PROVIDER', e)
             if (errorCatch(e) === 'jwt expired') {
               await AuthService.logout()
               if (isMounted) setUser(null)
             }
           }
+        } else {
+          setUser(null)
         }
       } finally {
         await SplashScreen.hideAsync()
@@ -65,7 +67,7 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     registerSetUser(setUser)
   }, [])
 
-  console.log('user',user)
+  console.log('user', user)
 
   return (
     <AuthContext.Provider value={{ user, setUser }}>

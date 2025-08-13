@@ -17,6 +17,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use(async config => {
+  console.log('interceptors.request')
   const accessToken = await getAccessToken()
   if (config.headers && accessToken) {
     config.headers.Authorization = `Bearer ${accessToken}`
@@ -29,16 +30,22 @@ instance.interceptors.response.use(
   config => config,
   async error => {
     const originalRequest = error.config
+    console.log('IIInterceptors.response', error)
     if (error.status === 401 && error.config && !error.config._isRetry) {
       originalRequest._isRetry = true
       try {
+        console.log('INTERCEPTOR response')
         await getNewTokens()
         return instance.request(originalRequest)
       } catch (refreshError) {
+        console.log('refreshError', refreshError)
         if (errorCatch(refreshError) === 'jwt expired') {
+          console.log('Interceptor JWT expired')
           await logoutWithContext(AuthService.logout)
         }
       }
+    }else{
+      console.log('Interceptor ELSE')
     }
 
     throw error

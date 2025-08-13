@@ -11,7 +11,6 @@ const Profile = () => {
   const { setUser } = useAuth()
 
   const logout = () => {
-    console.log('logout')
     AuthService.logout().then(() => setUser(null))
   }
   return (
