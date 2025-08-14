@@ -14,7 +14,7 @@ const Profile = () => {
     AuthService.logout().then(() => setUser(null))
   }
   return (
-    <View className='flex-1 items-center justify-center'>
+    <View className='flex-1 items-center justify-center bg-white'>
       <Text className='mb-4'>Profile</Text>
       <CustomBtn onPress={logout}>logout</CustomBtn>
     </View>

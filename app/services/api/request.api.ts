@@ -1,8 +1,5 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { getItemAsync } from 'expo-secure-store'
 import Toast from 'react-native-toast-message'
-
-import { EnumSecureStore } from '@/types/auth.interface'
 
 import { errorCatch } from './error.api'
 import instance from './interceptors.api'

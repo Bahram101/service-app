@@ -1,7 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import axios from 'axios'
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store'
-import { get } from 'node_modules/axios/index.cjs'
 
 import {
   EnumAsyncStorage,
@@ -10,7 +8,9 @@ import {
   ITokens
 } from '@/types/auth.interface'
 
-import { API_URL } from '@/config/api.config'
+import { API_AUTH, SERVER } from '@/config/api.config'
+
+import { authInstance } from '../api/interceptors.api'
 import { request } from '../api/request.api'
 
 export const getAccessToken = async () => {
@@ -65,14 +65,11 @@ export const getNewTokens = async () => {
   console.log('getNewTokens')
   try {
     const refreshToken = await getRefreshToken()
-    
-    if (!refreshToken || typeof refreshToken !== 'string') {
-      throw new Error('Refresh token is missing or invalid!!')
-    }
+    if (!refreshToken) throw new Error('No refresh token found')
 
-    var bodyFormData = new FormData()
-    bodyFormData.set('grant_type', 'refresh_token')
-    bodyFormData.set('refresh_token', refreshToken)
+    const body = new URLSearchParams()
+    body.set('grant_type', 'refresh_token')
+    body.set('refresh_token', refreshToken)
 
     // const response = await axios.post<string, { data: IAuthResponse }>(
     //   API_URL + '/oauth/token',
@@ -84,22 +81,21 @@ export const getNewTokens = async () => {
     //     }
     //   }
     // )
-    const response = await request<IAuthResponse>({
-      method: 'POST',
-      url: API_URL + '/oauth/token',
-      data: bodyFormData,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
+
+    const { data } = await authInstance.post<IAuthResponse>(
+      '/oauth/token',
+      body.toString(),
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
+        }
       }
-    })
+    )
 
-    // console.log('response', JSON.stringify(response, null, 2))
+    if (data.access_token) await saveAccessToken(data.access_token)
 
-    if (response.access_token)
-      await saveAccessToken(response.access_token)
-
-    return response
+    return data
   } catch (e) {
     console.log('Error new token', e)
     throw e

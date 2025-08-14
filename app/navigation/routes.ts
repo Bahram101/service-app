@@ -1,8 +1,8 @@
-import Equipment from '@/components/screens/equipment/Equipment'
-import Home from '@/components/screens/home/Home'
+import Equipment from '@/components/screens/Equipment/Equipment'
+import Home from '@/components/screens/Home/Home'
 import Profile from '@/components/screens/Profile/Profile'
-import Reports from '@/components/screens/reports/Reports'
-import Requests from '@/components/screens/requests/requests'
+import Reports from '@/components/screens/Reports/Reports'
+import Requests from '@/components/screens/Requests/Requests'
 
 import { IRoute } from './navigation.types'
 

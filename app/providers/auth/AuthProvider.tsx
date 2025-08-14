@@ -33,20 +33,17 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const initAuth = async () => {
       try {
         const accessToken = await getAccessToken()
-        console.log('accessToken', accessToken ? 'TRUE' : 'FALSE' )
+        console.log('accessToken', accessToken ? 'TRUE' : 'FALSE')
         if (accessToken) {
           try {
-            await getNewTokens()
             const storedUser = await getUserFromStorage()
-            if (isMounted) {
-              setUser(storedUser)
-            }
+            if (isMounted) setUser(storedUser)
           } catch (e) {
             console.log('Error getting new tokens AUTH-PROVIDER', e)
-            if (errorCatch(e) === 'jwt expired') {
-              await AuthService.logout()
-              if (isMounted) setUser(null)
-            }
+            // if (errorCatch(e) === 'jwt expired') {
+            //   await AuthService.logout()
+            //   if (isMounted) setUser(null)
+            // }
           }
         } else {
           setUser(null)

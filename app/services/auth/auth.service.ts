@@ -2,42 +2,80 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { EnumAsyncStorage, IAuthResponse } from '@/types/auth.interface'
 
-import { API_URL } from '@/config/api.config'
+import { API_AUTH } from '@/config/api.config'
+
+import { authInstance } from '../api/interceptors.api'
 
 import {
   deleteTokensFromStorage,
   getAccessToken,
   saveToStorage
 } from './auth.helper'
+import Toast from 'react-native-toast-message'
+import { errorCatch } from '../api/error.api'
 
 export const AuthService = {
+  // async login(username: string, password: string) {
+  //   try {
+  //     const body = new URLSearchParams({
+  //       username,
+  //       password,
+  //       grant_type: 'password'
+  //     }).toString()
+
+  //     const response = await fetch(`${API_AUTH}/oauth/token`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/x-www-form-urlencoded',
+  //         Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
+  //       },
+  //       body: body
+  //     })
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`)
+  //     }
+  //     const data = await response.json()
+
+  //     if (data.access_token) {
+  //       await saveToStorage(data)
+  //     }
+  //     return data
+  //   } catch (error) {
+  //     throw error
+  //   }
+  // },
+
   async login(username: string, password: string) {
     try {
-      const body = new URLSearchParams({
+      const bodyFormData = new URLSearchParams({
         username,
         password,
         grant_type: 'password'
-      }).toString()
-
-      const response = await fetch(`${API_URL}/oauth/token`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-          Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
-        },
-        body: body
       })
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
-      }
-      const data = await response.json()
+      const { data } = await authInstance.post<IAuthResponse>(
+        '/oauth/token',
+        bodyFormData.toString(),
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
+          }
+        }
+      )
 
       if (data.access_token) {
         await saveToStorage(data)
       }
+
       return data
     } catch (error) {
+      Toast.show({
+        type: 'error',
+        text1: 'Request error',
+        text2: errorCatch(error)
+      })
       throw error
     }
   },

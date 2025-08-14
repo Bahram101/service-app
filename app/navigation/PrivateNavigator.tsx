@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import React from 'react'
 
-import Auth from '@/components/screens/auth/Auth'
+import Auth from '@/components/screens/Auth/Auth'
 
 import { useAuth } from '@/hooks/useAuth'
 

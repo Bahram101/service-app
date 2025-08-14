@@ -5,7 +5,7 @@ type Props = {}
 
 const Reports = (props: Props) => {
   return (
-    <View>
+    <View className='flex-1 items-center justify-center bg-white'>
       <Text>Reports</Text>
     </View>
   )
