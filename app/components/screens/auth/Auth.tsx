@@ -70,7 +70,7 @@ const Auth = () => {
                   } }}
                 />
 
-                <View className='items-center mt-4'>
+                {/* <View className='items-center mt-4'>
                   <CheckboxGroup >
                     <Checkbox
                       value='accept'
@@ -90,7 +90,7 @@ const Auth = () => {
                       </CheckboxLabel>
                     </Checkbox>
                   </CheckboxGroup>
-                </View>
+                </View> */}
 
                 <View className='items-center'>
                   <CustomBtn

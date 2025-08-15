@@ -7,18 +7,14 @@ import {
   useState
 } from 'react'
 
-import { IUser } from '@/types/user.interface'
-
-import { errorCatch } from '@/services/api/error.api'
 import {
-  getAccessToken,
-  getNewTokens,
+  getAccessToken, 
   getUserFromStorage
 } from '@/services/auth/auth.helper'
 import { registerSetUser } from '@/services/auth/auth.helper-context'
-import { AuthService } from '@/services/auth/auth.service'
 
 import { IContext, TypeUserState } from './auth-provider.interface'
+import { removePinCode } from '@/utils/pinStore'
 
 export const AuthContext = createContext({} as IContext)
 
@@ -33,18 +29,11 @@ const AuthProvider: FC<PropsWithChildren<unknown>> = ({ children }) => {
     const initAuth = async () => {
       try {
         const accessToken = await getAccessToken()
-        console.log('accessToken', accessToken ? 'TRUE' : 'FALSE')
         if (accessToken) {
           try {
             const storedUser = await getUserFromStorage()
             if (isMounted) setUser(storedUser)
-          } catch (e) {
-            console.log('Error getting new tokens AUTH-PROVIDER', e)
-            // if (errorCatch(e) === 'jwt expired') {
-            //   await AuthService.logout()
-            //   if (isMounted) setUser(null)
-            // }
-          }
+          } catch (e) {}
         } else {
           setUser(null)
         }

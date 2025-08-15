@@ -26,7 +26,6 @@ coreInstance.interceptors.request.use(async config => {
   console.log('REQ interceptors')
   const accessToken = await getAccessToken()
   if (config.headers && accessToken) {
-    console.log('Setting Authorization header')
     config.headers.Authorization = `Bearer ${accessToken}`
   }
 

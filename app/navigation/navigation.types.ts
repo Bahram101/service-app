@@ -5,8 +5,10 @@ export type TypeRootStackParamList = {
   Home: undefined
   Requests: undefined
   Equipment: undefined
-  Reports: undefined 
-  Profile: undefined 
+  Reports: undefined
+  Profile: undefined
+  SetPin: undefined
+  EnterPin: undefined
 }
 
 export interface IRoute {

@@ -8,10 +8,8 @@ import {
   ITokens
 } from '@/types/auth.interface'
 
-import { API_AUTH, SERVER } from '@/config/api.config'
-
 import { authInstance } from '../api/interceptors.api'
-import { request } from '../api/request.api'
+import { removePinCode } from '@/utils/pinStore'
 
 export const getAccessToken = async () => {
   const accessToken = await getItemAsync(EnumSecureStore.ACCESS_TOKEN)
@@ -24,7 +22,6 @@ export const getRefreshToken = async () => {
 }
 
 export const getUserFromStorage = async () => {
-  // console.log('GETUserFromStorage')
   try {
     return JSON.parse(
       (await AsyncStorage.getItem(EnumAsyncStorage.USER)) || '{}'
@@ -45,7 +42,8 @@ export const saveTokensToStorage = async (data: ITokens) => {
 
 export const deleteTokensFromStorage = async () => {
   await deleteItemAsync(EnumSecureStore.ACCESS_TOKEN)
-  await deleteItemAsync(EnumSecureStore.REFRESH_TOKEN)
+  await deleteItemAsync(EnumSecureStore.REFRESH_TOKEN) 
+  await removePinCode()
 }
 
 export const saveToStorage = async (data: IAuthResponse) => {
@@ -70,17 +68,6 @@ export const getNewTokens = async () => {
     const body = new URLSearchParams()
     body.set('grant_type', 'refresh_token')
     body.set('refresh_token', refreshToken)
-
-    // const response = await axios.post<string, { data: IAuthResponse }>(
-    //   API_URL + '/oauth/token',
-    //   bodyFormData,
-    //   {
-    //     headers: {
-    //       'Content-Type': 'application/x-www-form-urlencoded',
-    //       Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
-    //     }
-    //   }
-    // )
 
     const { data } = await authInstance.post<IAuthResponse>(
       '/oauth/token',

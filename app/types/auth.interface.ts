@@ -14,7 +14,8 @@ export type IAuthFormData = {
 
 export enum EnumSecureStore {
   ACCESS_TOKEN = 'access_token',
-  REFRESH_TOKEN = 'refresh_token'
+  REFRESH_TOKEN = 'refresh_token',
+  PIN = 'pin'
 }
 
 export enum EnumAsyncStorage {

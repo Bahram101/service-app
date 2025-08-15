@@ -5,6 +5,8 @@ import Reports from '@/components/screens/Reports/Reports'
 import Requests from '@/components/screens/Requests/Requests'
 
 import { IRoute } from './navigation.types'
+import SetPin from '@/components/screens/Pin/SetPin'
+import EnterPin from '@/components/screens/Pin/EnterPin'
 
 export const routes: IRoute[] = [
   {
@@ -26,5 +28,13 @@ export const routes: IRoute[] = [
   {
     name: 'Profile',
     component: Profile
+  },
+  {
+    name: 'SetPin',
+    component: SetPin
+  },
+  {
+    name: 'EnterPin',
+    component: EnterPin
   }
 ]

@@ -9,7 +9,7 @@ const Requests = (props: Props) => {
   // console.log(requests, JSON.stringify(isLoading, null, 2))
   return (
     <View className='flex-1 items-center justify-center bg-white'>
-      <Text>Reaquests</Text>
+      <Text>Requests</Text>
     </View>
   )
 }
