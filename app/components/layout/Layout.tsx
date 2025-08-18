@@ -1,7 +1,6 @@
 import cn from 'clsx'
 import React, { FC, PropsWithChildren } from 'react'
-import { View } from 'react-native'
-import { ScrollView } from 'react-native'
+import { ScrollView, View } from 'react-native'
 
 interface ILayout {
   children: React.ReactNode
@@ -10,10 +9,10 @@ interface ILayout {
 
 const Layout: FC<PropsWithChildren<ILayout>> = ({ children, className }) => {
   return (
-    <View
-      className={cn('flex w-full h-full bg-white pt-16 px-4', className)}
-    >
-      <ScrollView showsVerticalScrollIndicator={false}>{children}</ScrollView>
+    <View className={cn('flex w-full h-full bg-white pt-16 px-4', className)}>
+      {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+        {children}
+        {/* </ScrollView> */}
     </View>
   )
 }
