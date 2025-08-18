@@ -32,6 +32,7 @@
     "expo-secure-store": "~14.2.3",
     "expo-splash-screen": "~0.30.10",
     "expo-status-bar": "~2.2.3",
+    "expo-updates": "~0.28.17",
     "gluestack-ui": "^0.7.22",
     "nativewind": "^4.1.23",
     "prettier": "^3.6.2",

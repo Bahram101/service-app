@@ -24,6 +24,20 @@
     "web": {
       "favicon": "./app/assets/favicon.png"
     },
-    "plugins": ["expo-secure-store"]
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "5855560a-485d-47a7-af7e-ea5543900d63"
+      }
+    },
+    "owner": "bahram101",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/5855560a-485d-47a7-af7e-ea5543900d63"
+    }
   }
 }
