@@ -4,7 +4,7 @@ import {
 } from '@react-navigation/native'
 import React, { useCallback, useEffect, useState } from 'react'
 
-import BottomMenu from '@/components/ui/layout/bottom-menu/BottomMenu'
+import BottomMenu from '@/components/layout/bottom-menu/BottomMenu'
 import { useAuth } from '@/hooks/useAuth'
 import AuthNavigator from './AuthNavigator'
 import MainNavigator from './MainNavigator'
