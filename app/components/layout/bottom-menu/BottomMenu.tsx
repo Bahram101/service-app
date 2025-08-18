@@ -16,7 +16,7 @@ const BottomMenu: FC<IButtonMenu> = props => {
 
   return (
     <View
-      className='flex-row border-t border-t-[#bbbbbb]'
+      className='flex-row border-t border-t-[#] bg-mainGreen rounded-3xl'
       style={{ paddingBottom: bottom }}
     >
       {menuItems.map((item, index) => {
