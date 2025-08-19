@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { RequestService } from '@/services/requests.service'
+import { RequestService } from '@/services/request.service'
 
 export const useGetAllRequests = () => {
   const { data: requests, isLoading } = useQuery({

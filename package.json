@@ -34,6 +34,7 @@
     "expo-status-bar": "~2.2.3",
     "expo-updates": "~0.28.17",
     "gluestack-ui": "^0.7.22",
+    "lucide-react": "^0.540.0",
     "nativewind": "^4.1.23",
     "prettier": "^3.6.2",
     "react": "19.0.0",

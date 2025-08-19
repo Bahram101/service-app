@@ -1,21 +1,22 @@
 import React from 'react'
-import { Dimensions, Text } from 'react-native'
+import { Dimensions, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
 
-import { useGetAllRequests } from '../Requests/useGetAllRequests'
-
+import Banner from './Banner'
 import Header from './Header'
-import Slide from './Slide'
+import RequestTypeList from './request-types/RequestTypeList'
 
-const Home = () => {
-  const { requests, isLoading } = useGetAllRequests()
+const Home = () => { 
   const { width } = Dimensions.get('window')
+
   return (
     <Layout>
       <Header />
-      <Slide />
-      <Text>Home</Text>
+      <View className='bg-[#eaeaea] px-4 h-full'>
+        <Banner />
+        <RequestTypeList />
+      </View>
     </Layout>
   )
 }

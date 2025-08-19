@@ -1,12 +1,12 @@
 import Equipment from '@/components/screens/Equipment/Equipment'
 import Home from '@/components/screens/Home/Home'
 import Profile from '@/components/screens/Profile/Profile'
-import Reports from '@/components/screens/Reports/Reports'
-import Requests from '@/components/screens/Requests/Requests'
+import Reports from '@/components/screens/Reports/Reports' 
 
 import { IRoute } from './navigation.types'
 import SetPin from '@/components/screens/Pin/SetPin'
 import EnterPin from '@/components/screens/Pin/EnterPin'
+import Requests from '@/components/screens/Requests/Requests'
 
 export const routes: IRoute[] = [
   {

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Text, View } from 'react-native'
+import { Platform, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import MenuItem from './MenuItem'
@@ -14,10 +14,14 @@ interface IButtonMenu {
 const BottomMenu: FC<IButtonMenu> = props => {
   const { bottom } = useSafeAreaInsets()
 
+  const isAndroid = Platform.OS === 'android'
+  const isIOS = Platform.OS === 'ios'
   return (
     <View
-      className='flex-row border-t border-t-[#] bg-mainGreen rounded-3xl'
-      style={{ paddingBottom: bottom }}
+      className='flex-row border-t border-gray-200' 
+      style={{
+        paddingBottom: isIOS ? bottom - 10 : isAndroid ? bottom + 12 : 0
+      }}
     >
       {menuItems.map((item, index) => {
         return (

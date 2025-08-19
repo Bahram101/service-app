@@ -15,37 +15,6 @@ import Toast from 'react-native-toast-message'
 import { errorCatch } from '../api/error.api'
 
 export const AuthService = {
-  // async login(username: string, password: string) {
-  //   try {
-  //     const body = new URLSearchParams({
-  //       username,
-  //       password,
-  //       grant_type: 'password'
-  //     }).toString()
-
-  //     const response = await fetch(`${API_AUTH}/oauth/token`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/x-www-form-urlencoded',
-  //         Authorization: 'Basic V0VSUDpwYXNzd29yZA=='
-  //       },
-  //       body: body
-  //     })
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`)
-  //     }
-  //     const data = await response.json()
-
-  //     if (data.access_token) {
-  //       await saveToStorage(data)
-  //     }
-  //     return data
-  //   } catch (error) {
-  //     throw error
-  //   }
-  // },
-
   async login(username: string, password: string) {
     try {
       const bodyFormData = new URLSearchParams({
@@ -81,7 +50,6 @@ export const AuthService = {
   },
 
   async logout() {
-    console.log('AuthService.logout')
     await deleteTokensFromStorage()
     await AsyncStorage.removeItem(EnumAsyncStorage.USER)
   }

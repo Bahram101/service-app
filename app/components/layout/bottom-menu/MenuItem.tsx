@@ -28,13 +28,13 @@ const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
         <View
           className={cn(
             'flex justify-center items-center h-full',
-            // pressed ? 'bg-gray-100' : 'bg-transparent'
+            pressed ? 'bg-gray-100' : 'bg-transparent'
           )}
         >
           <Feather
             name={item.iconName}
             size={26}
-            color={isActive ? 'white' : '#597C4C'}
+             color={isActive ? COLORS.green : COLORS.gray}
           />
         </View>
       )}
