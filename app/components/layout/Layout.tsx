@@ -10,7 +10,7 @@ interface ILayout {
 const Layout: FC<PropsWithChildren<ILayout>> = ({ children, className }) => {
   return (
     <View className={cn('flex w-full h-full pt-16 bg-white', className)}>
-      {children}
+      <View className='bg-[#eaeaea]'>{children}</View>
     </View>
   )
 }

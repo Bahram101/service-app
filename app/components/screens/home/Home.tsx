@@ -7,13 +7,13 @@ import Banner from './Banner'
 import Header from './Header'
 import RequestTypeList from './request-types/RequestTypeList'
 
-const Home = () => { 
+const Home = () => {
   const { width } = Dimensions.get('window')
 
   return (
     <Layout>
       <Header />
-      <View className='bg-[#eaeaea] px-4 h-full'>
+      <View className='px-4 h-full'>
         <Banner />
         <RequestTypeList />
       </View>

@@ -12,7 +12,7 @@ export const List: FC<IList> = ({ title, requests }) => {
           {requests.map(app => (
             <View
               key={app.id}
-              className='p-5 bg-white mb-2 rounded-xl text- border-gray-200 flex-row justify-between'
+              className='p-5 bg-white mb-2 rounded-xl border-gray-200 flex-row justify-between'
             >
               <View className='flex-row items-center'>
                 <Feather name={app.icon} size={24} />

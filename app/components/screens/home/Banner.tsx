@@ -62,7 +62,7 @@ const Banner = (props: Props) => {
                 index === 0
                   ? 'text-red-600'
                   : index === 1
-                    ? 'text-blue-600'
+                    ? 'text-blue-500'
                     : 'text-green-600'
               )}
             >
