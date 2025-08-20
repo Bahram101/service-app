@@ -3,25 +3,30 @@ import { IMenuItem } from './menu.interface'
 export const menuItems: IMenuItem[] = [
   {
     iconName: 'home',
-    path: 'Home'
+    path: 'Home',
+    label: 'Главная'
   },
   {
     iconName: 'edit',
-    path: 'Requests'
+    path: 'Requests',
+    label: 'Заявки'
   },
   {
     iconName: 'shopping-bag',
-    path: 'Equipment'
+    path: 'Equipment',
+    label: 'Инвентарь'
   },
   {
-    iconName: 'pie-chart',
-    path: 'Reports'
+    iconName: 'message-circle',
+    path: 'Reports',
+    label: 'Сообщения'
   },
   // {
   //   iconName: 'more-horizontal'
   // }
   {
     iconName: 'user',
-    path: 'Profile'
+    path: 'Profile',
+    label: 'Профиль'
   }
 ]

@@ -11,8 +11,11 @@ import {
 import { TabBar, TabView } from 'react-native-tab-view'
 
 import Layout from '@/components/layout/Layout'
+import Heading from '@/components/ui/Heading'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+
+import Header from '../Home/Header'
 
 type Order = {
   id: string
@@ -119,8 +122,8 @@ const Requests = () => {
 
   return (
     <Layout>
-      <View className='px-4 h-full pt-2'>
-        <Text className='text-xl text-center font-bold mb-2'>Заявки</Text>
+      <Heading>Заявки</Heading>
+      <View className='px-4 h-full pt-2'> 
         <View className='flex-1'>
           <TabView
             lazy

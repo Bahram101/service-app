@@ -7,6 +7,7 @@ import { Pressable, Text, View } from 'react-native'
 import Layout from '@/components/layout/Layout'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+import Heading from '@/components/ui/Heading'
 
 type Props = {}
 
@@ -30,17 +31,8 @@ const RequestDetail = (props: Props) => {
   ]
   return (
     <Layout>
-      <View className='px-4 h-full pt-3 gap-3'>
-        <View className='relative flex-row justify-between '>
-          <Pressable onPress={() => goBack()}>
-            <Feather name='chevron-left' size={30} className='-translate-x-2' />
-            {/* <Feather name='chevron-left' size={30} className='absolute left-0' />  */}
-          </Pressable>
-          <View className='flex justify-center items-center'>
-            <Text className='font-bold text-lg  '>Заявка №1564654</Text>
-          </View>
-        </View>
-
+      <Heading backIcon={true}>Заявка №1564654</Heading>
+      <View className='px-4 h-full pt-3 gap-3'>      
         <View className='bg-white p-4 rounded-2xl'>
           <View className='flex-row items-center border-b pb-4 border-gray-200'>
             <Feather name='user' size={22} style={{ color: '#15803d' }} />

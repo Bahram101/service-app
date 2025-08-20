@@ -3,6 +3,7 @@ import React from 'react'
 import { Dimensions, Image, Pressable, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
+import Heading from '@/components/ui/Heading'
 
 type Props = {}
 
@@ -48,8 +49,8 @@ const Equipment = (props: Props) => {
   ]
   return (
     <Layout>
+      <Heading>Инвентарь</Heading>
       <View className='px-4 h-full pt-4 gap-3'>
-        <Text className='text-xl text-center font-bold '>Инвентарь</Text>
         <View className='rounded-2xl bg-white'>
           {equipments.map((item, index) => (
             <View
@@ -68,7 +69,10 @@ const Equipment = (props: Props) => {
                 </Text>
               </View>
               <Text
-                className={cn('font-bold ', Number(item.qty) < 5 ? 'text-red-500' : '')}
+                className={cn(
+                  'font-bold ',
+                  Number(item.qty) < 5 ? 'text-red-500' : ''
+                )}
               >
                 {item.qty} шт.
               </Text>
