@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <Layout>
       <Header />
-      <View className='px-4 h-full'>
+      <View className='px-4 h-full pt-2'>
         <Banner />
         <RequestTypeList />
       </View>

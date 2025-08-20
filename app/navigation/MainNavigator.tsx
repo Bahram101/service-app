@@ -23,7 +23,7 @@ const MainNavigator = () => (
       headerStyle: {
         backgroundColor: '#fff'
       },
-      animation: 'fade',
+      // animation: 'fade',
       animationDuration: 100
     }}
   >
