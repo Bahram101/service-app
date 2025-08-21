@@ -8,7 +8,11 @@ export type TypeRootStackParamList = {
     id: string
   }
   Equipment: undefined
-  Reports: undefined
+  Messages: undefined
+  MessageDetail:{
+    id: string,
+    name: string
+  }
   Profile: undefined
   SetPin: undefined
   EnterPin: undefined

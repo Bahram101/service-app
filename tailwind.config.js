@@ -18,9 +18,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#007AFF',
-        baseGreen: '#15803d',
-        baseBlue: '#2051E5',
+        primary: '#15973D',
+        blue: '#007AFF',
         // primary: {
         //   0: 'rgb(var(--color-primary-0)/<alpha-value>)',
         //   50: 'rgb(var(--color-primary-50)/<alpha-value>)',
@@ -85,7 +84,7 @@ module.exports = {
           400: 'rgb(var(--color-success-400)/<alpha-value>)',
           500: 'rgb(var(--color-success-500)/<alpha-value>)',
           600: 'rgb(var(--color-success-600)/<alpha-value>)',
-          700: 'rgb(var(--color-success-700)/<alpha-value>)',
+          700: 'rgb(var(--color-primary)/<alpha-value>)',
           800: 'rgb(var(--color-success-800)/<alpha-value>)',
           900: 'rgb(var(--color-success-900)/<alpha-value>)',
           950: 'rgb(var(--color-success-950)/<alpha-value>)'

@@ -61,7 +61,7 @@ const Equipment = (props: Props) => {
               )}
             >
               <View className='flex-col'>
-                <Text className='text-lg text-baseGreen mb-1'>
+                <Text className='text-lg text-primary mb-1'>
                   {item.name.toUpperCase()}
                 </Text>
                 <Text className='text-xs text-gray-400'>
@@ -79,7 +79,7 @@ const Equipment = (props: Props) => {
             </View>
           ))}
         </View>
-        <Pressable className='bg-baseGreen rounded-2xl p-4'>
+        <Pressable className='bg-primary rounded-2xl p-4'>
           <Text className='text-white text-xl font-bold text-center'>
             Заказать запчасти
           </Text>

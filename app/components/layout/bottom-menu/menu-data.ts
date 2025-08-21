@@ -18,7 +18,7 @@ export const menuItems: IMenuItem[] = [
   },
   {
     iconName: 'message-circle',
-    path: 'Reports',
+    path: 'Messages',
     label: 'Сообщения'
   },
   // {

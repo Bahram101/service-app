@@ -58,12 +58,12 @@ const Banner = (props: Props) => {
             </Text>
             <Text
               className={cn(
-                'text-gray-600 font-semibold mt-1 text-5xl',
-                index === 0
-                  ? 'text-red-600'
-                  : index === 1
-                    ? 'text-blue-500'
-                    : 'text-green-600'
+                'font-semibold mt-1 text-5xl',
+                item.id === 'active'
+                  ? 'text-error-600'
+                  : item.id === 'done'
+                    ? 'text-blue'
+                    : 'text-primary'
               )}
             >
               {item.value}

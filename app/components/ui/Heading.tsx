@@ -22,7 +22,7 @@ const Heading: FC<PropsWithChildren<IHeading>> = ({
   return (
     <View
       className={cn(
-        'bg-white  px-4 pt-2 pb-4 mb-2 relative flex-row  items-center',
+        'bg-white  pl-2 pr-4 pt-2 pb-4 mb-2 relative flex-row  items-center',
         isCenter && 'text-center',
         backIcon ? 'justify-between' : 'justify-center',
         className
@@ -30,7 +30,7 @@ const Heading: FC<PropsWithChildren<IHeading>> = ({
     >
       {backIcon && (
         <Pressable onPress={() => goBack()}>
-          <Feather name='chevron-left' size={30} className='-translate-x-2' />
+          <Feather name='chevron-left' size={28} />
         </Pressable>
       )}
 

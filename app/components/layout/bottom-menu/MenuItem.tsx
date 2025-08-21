@@ -37,7 +37,11 @@ const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
             size={item.iconName === 'message-circle' ? 25 : 23}
             color={isActive ? COLORS.green : COLORS.gray}
           />
-          <Text className='text-xs text-gray-400'>{item.label}</Text>
+          <Text
+            className={cn('text-xs ', isActive ? 'text-primary' : 'text-gray-400')}
+          >
+            {item.label}
+          </Text>
         </View>
       )}
     </Pressable>

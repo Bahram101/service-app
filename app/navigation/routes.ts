@@ -1,13 +1,14 @@
 import Equipment from '@/components/screens/Equipment/Equipment'
 import Home from '@/components/screens/Home/Home'
 import Profile from '@/components/screens/Profile/Profile'
-import Reports from '@/components/screens/Reports/Reports' 
+import Messages from '@/components/screens/Messages/Messages' 
 
 import { IRoute } from './navigation.types'
 import SetPin from '@/components/screens/Pin/SetPin'
 import EnterPin from '@/components/screens/Pin/EnterPin'
 import Requests from '@/components/screens/Requests/Requests'
 import RequestDetail from '@/components/screens/Requests/RequestDetail'
+import MessageDetail from '@/components/screens/Messages/MessageDetail'
 
 export const routes: IRoute[] = [
   {
@@ -27,8 +28,12 @@ export const routes: IRoute[] = [
     component: Equipment
   },
   {
-    name: 'Reports',
-    component: Reports
+    name: 'Messages',
+    component: Messages
+  },
+  {
+    name: 'MessageDetail',
+    component: MessageDetail
   },
   {
     name: 'Profile',

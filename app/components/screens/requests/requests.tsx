@@ -96,7 +96,7 @@ const Requests = () => {
           <Text className='text-[#374151] text-sm'>ЗАЯВКА № {item.number}</Text>
         </View>
         <View className='flex-row items-start gap-3'>
-          <View className='w-1 h-16 bg-[#16A34A] rounded-lg' />
+          <View className='w-1 h-16 bg-primary rounded-lg' />
           <View style={{ flex: 1 }}>
             <Text className='mb-2'>{item.date}</Text>
             <Text className='mb-2'>{item.time}</Text>
