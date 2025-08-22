@@ -16,21 +16,22 @@ import { Field } from '@/components/ui/field/Field'
 import { CheckIcon } from '@/components/ui/icon'
 
 import { IAuthFormData } from '@/types/auth.interface'
+
 import { useAuthMutations } from './useAuthMutation'
 
 const Auth = () => {
   const { control, reset, handleSubmit } = useForm<IAuthFormData>({
     mode: 'onChange',
     defaultValues: {
-      username:'bakhram.at',
-      password:'Almaty2023'
+      username: 'bakhram.at',
+      password: 'Almaty2023'
     }
   })
 
   const { loginSync, isLoading } = useAuthMutations(reset)
 
   const onSubmit: SubmitHandler<IAuthFormData> = data => {
-    loginSync(data) 
+    loginSync(data)
   }
 
   return (
@@ -47,11 +48,9 @@ const Auth = () => {
               <Loader />
             ) : (
               <>
-                <Text className='text-2xl text-center mb-4'>
-                  Sign in
-                </Text>
+                <Text className='text-2xl text-center mb-4'>Sign in</Text>
 
-                <Field<IAuthFormData> 
+                <Field<IAuthFormData>
                   placeholder='Введите логин'
                   keyboardType='email-address'
                   control={control}
@@ -64,10 +63,13 @@ const Auth = () => {
                   control={control}
                   name='password'
                   secureTextEntry
-                  rules={{ required: 'Password is required!', minLength: {
-                    value: 6,
-                    message:'Please enter at least 6 characters'
-                  } }}
+                  rules={{
+                    required: 'Password is required!',
+                    minLength: {
+                      value: 6,
+                      message: 'Please enter at least 6 characters'
+                    }
+                  }}
                 />
 
                 {/* <View className='items-center mt-4'>

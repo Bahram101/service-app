@@ -2,8 +2,11 @@ import cn from 'clsx'
 import React from 'react'
 import { Dimensions, Text, View } from 'react-native'
 
+import { getStatusColor, Status } from '@/utils/helpers'
+
 type Props = {}
 type Scheme = 'red' | 'blue' | 'green'
+
 type StatItem = {
   id: string
   title: string
@@ -38,9 +41,10 @@ const DATA: StatItem[] = [
 
 const Banner = (props: Props) => {
   const { width } = Dimensions.get('window')
-  const H_PADDING = 16 // горизонтальные паддинги контейнера
-  const GAP = 12 // зазор между карточками
+  const H_PADDING = 16
+  const GAP = 12
   const CARD_WIDTH = (width - H_PADDING * 2 - GAP * 2) / 3
+
   return (
     <View className='mt-4'>
       <View className='flex-row justify-between '>
@@ -59,11 +63,7 @@ const Banner = (props: Props) => {
             <Text
               className={cn(
                 'font-semibold mt-1 text-5xl',
-                item.id === 'active'
-                  ? 'text-error-600'
-                  : item.id === 'done'
-                    ? 'text-blue'
-                    : 'text-primary'
+                getStatusColor(item.id as Status)
               )}
             >
               {item.value}

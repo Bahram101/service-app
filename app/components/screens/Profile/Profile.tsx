@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
+import Layout from '@/components/layout/Layout'
+import Heading from '@/components/ui/Heading'
 import CustomBtn from '@/components/ui/button/Button'
 
 import { useAuth } from '@/hooks/useAuth'
@@ -16,15 +18,15 @@ const Profile = () => {
     AuthService.logout().then(() => setUser(null))
   }
   return (
-    <View className='flex-1 items-center justify-center bg-white'>
-      <View>
-        <Text className='mb-4'>Profile</Text>
-        <CustomBtn className='bg-blue-400 mb-6' onPress={() => navigate('SetPin')}>
+    <Layout>
+      <Heading>Профиль</Heading>
+      <View className='px-4 h-full pt-2'>     
+        <CustomBtn className='bg-blue mb-6' onPress={() => navigate('SetPin')}>
           Установить пин код
         </CustomBtn>
         <CustomBtn onPress={logout}>logout</CustomBtn>
       </View>
-    </View>
+    </Layout>
   )
 }
 

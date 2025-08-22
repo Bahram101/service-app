@@ -71,7 +71,7 @@ const Equipment = (props: Props) => {
               <Text
                 className={cn(
                   'font-bold ',
-                  Number(item.qty) < 5 ? 'text-red-500' : ''
+                  Number(item.qty) < 5 ? 'text-error-500' : ''
                 )}
               >
                 {item.qty} шт.

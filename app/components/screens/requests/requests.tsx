@@ -8,14 +8,12 @@ import {
   View,
   useWindowDimensions
 } from 'react-native'
-import { TabBar, TabView } from 'react-native-tab-view'
+import { TabBar, TabBarItem, TabBarProps, TabView } from 'react-native-tab-view'
 
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
-
-import Header from '../Home/Header'
 
 type Order = {
   id: string
@@ -123,47 +121,72 @@ const Requests = () => {
   return (
     <Layout>
       <Heading>Заявки</Heading>
-      <View className='px-4 h-full pt-2'> 
-        <View className='flex-1'>
-          <TabView
-            lazy
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
-            removeClippedSubviews={false}
-            renderTabBar={props => {
-              return (
-                <TabBar
-                  {...props}
-                  style={{ backgroundColor: 'transparent' }}
-                  contentContainerStyle={{
-                    // marginHorizontal: 12,
-                    backgroundColor: '#d2d2d2',
-                    borderRadius: 9999
-                  }}
-                  indicatorStyle={{
-                    // backgroundColor: '#fff', // фон активной вкладки — белый
-                    backgroundColor: 'transparent',
-                    height: '85%',
-                    borderRadius: 9999,
-                    marginVertical: 3
-                  }}
-                  tabStyle={{ width: 'auto' }}
-                  pressColor='transparent'
-                  renderLabel={({ route, focused }) => (
-                    <Text
-                      className={`px-4 py-1 ${focused ? 'font-bold' : 'font-semibold'}`}
-                      style={{ color: focused ? '#000000' : '#374151' }}
-                    >
-                      {route.title}
-                    </Text>
-                  )}
-                />
-              )
-            }}
-          />
-        </View>
+      <View className='px-4 h-full pt-2'>
+        <TabView
+          lazy
+          style={{ position: 'relative' }}
+          navigationState={{ index, routes }}
+          renderScene={renderScene}
+          onIndexChange={setIndex}
+          initialLayout={{ width: layout.width }}
+          removeClippedSubviews={false}
+          renderTabBar={(props: TabBarProps<any>) => {
+            return (
+              <TabBar
+                {...props} 
+                activeColor='black'
+                inactiveColor='black'
+                style={{
+                  backgroundColor: '#D4D4D4',
+                  height: 43,
+                  borderRadius: 30
+                }}
+                contentContainerStyle={{
+                  backgroundColor: 'transparent',
+                  borderRadius: 30,
+                  alignItems: 'center' 
+                }}
+                indicatorStyle={{
+                  backgroundColor: 'white',
+                  height: '80%',
+                  width:'31%',
+                  borderRadius: 9999,
+                  marginVertical: 4,
+                  marginLeft: 5,
+                  marginRight: 5
+                }}
+                tabStyle={{
+                  flex: 1
+                  // width: 'auto',
+                  // borderRadius: 30,
+                }}
+                renderTabBarItem={itemProps => {
+                  console.log('itemProps', JSON.stringify(itemProps, null, 2))
+                  const { key, ...rest } = itemProps
+                  return (
+                    <TabBarItem
+                      {...rest}
+                      key={itemProps.key}
+                      label={({ focused, color, labelText }) => (
+                        <Text
+                          style={{
+                            fontSize: focused ? 14 : 14,
+                            padding:0
+                            // fontSize: 12,
+                            // fontWeight: focused ? 'bold' : '500',
+                            // color
+                          }}
+                        >
+                          {labelText}
+                        </Text>
+                      )}
+                    />
+                  )
+                }}
+              />
+            )
+          }}
+        />
       </View>
     </Layout>
   )
