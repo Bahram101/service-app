@@ -1,3 +1,4 @@
+import cn from 'clsx'
 import { useState } from 'react'
 import {
   FlatList,
@@ -15,6 +16,8 @@ import Heading from '@/components/ui/Heading'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
+import { getColorByStatus, getStatusColors } from './helpers'
+
 type Order = {
   id: string
   title: string
@@ -22,6 +25,7 @@ type Order = {
   date: string
   time: string
   address: string
+  status: number
 }
 
 const activeData: Order[] = [
@@ -31,7 +35,8 @@ const activeData: Order[] = [
     number: '1564654',
     date: '13 август',
     time: '11:00 — 11:40',
-    address: 'Мкр. Мамыр-4, дом 138'
+    address: 'Мкр. Мамыр-4, дом 138',
+    status: 1
   },
   {
     id: '2',
@@ -39,7 +44,8 @@ const activeData: Order[] = [
     number: '1564674',
     date: '13 август',
     time: '11:40 — 12:20',
-    address: 'Мкр. Аксаи-4, дом 96, кв 10'
+    address: 'Мкр. Аксаи-4, дом 96, кв 10',
+    status: 2
   },
   {
     id: '3',
@@ -47,7 +53,8 @@ const activeData: Order[] = [
     number: '1564632',
     date: '13 август',
     time: '11:00 — 11:40',
-    address: 'Мкр. Таугуль-2, дом 17'
+    address: 'Мкр. Таугуль-2, дом 17',
+    status: 3
   },
   {
     id: '4',
@@ -55,7 +62,8 @@ const activeData: Order[] = [
     number: '1564854',
     date: '13 август',
     time: '11:00 — 11:40',
-    address: 'Мкр. Мамыр-4, дом 138'
+    address: 'Мкр. Мамыр-4, дом 138',
+    status: 4
   }
 ]
 
@@ -88,17 +96,34 @@ const Requests = () => {
         onPress={() => navigate('RequestDetail', { id: item.id })}
       >
         <View className='flex-row justify-between items-center mb-3'>
-          <Text className='bg-[#DCFCE7] px-2 py-1 rounded-lg text-xs'>
+          <Text className={cn('bg-success-50 px-2 py-1 rounded-lg text-xs')}>
             {item.title}
           </Text>
           <Text className='text-[#374151] text-sm'>ЗАЯВКА № {item.number}</Text>
         </View>
-        <View className='flex-row items-start gap-3'>
-          <View className='w-1 h-16 bg-primary rounded-lg' />
-          <View style={{ flex: 1 }}>
-            <Text className='mb-2'>{item.date}</Text>
-            <Text className='mb-2'>{item.time}</Text>
-            <Text className='mb-2'>{item.address}</Text>
+        <View className='flex-row justify-between'>
+          <View className='flex-row items-start gap-3 border-l-4 border-primary pl-3'>
+            <View className='gap-2'>
+              <Text>{item.date}</Text>
+              <Text>{item.time}</Text>
+              <Text>{item.address}</Text>
+            </View>
+          </View>
+          <View className='flex-col-reverse'>
+            <View className='flex-row items-center'>
+              <Text
+                className={cn('text-sm mr-2', getStatusColors(item.status).text)}
+              >
+                {item.status === 1
+                  ? 'Активная'
+                  : item.status === 2
+                    ? 'Срочная'
+                    : ''}
+              </Text>
+              <View className='bg-success-50 w-6 h-6 rounded-full justify-center items-center ml-2'>
+                <View className={cn('w-4 h-4 rounded-full', getStatusColors(item.status).bg)} />
+              </View>
+            </View>
           </View>
         </View>
       </Pressable>
@@ -133,35 +158,32 @@ const Requests = () => {
           renderTabBar={(props: TabBarProps<any>) => {
             return (
               <TabBar
-                {...props} 
+                {...props}
                 activeColor='black'
                 inactiveColor='black'
                 style={{
                   backgroundColor: '#D4D4D4',
                   height: 43,
-                  borderRadius: 30
+                  borderRadius: 40
                 }}
                 contentContainerStyle={{
                   backgroundColor: 'transparent',
                   borderRadius: 30,
-                  alignItems: 'center' 
+                  alignItems: 'center'
                 }}
                 indicatorStyle={{
                   backgroundColor: 'white',
-                  height: '80%',
-                  width:'31%',
+                  height: '88%',
+                  width: '32%',
                   borderRadius: 9999,
-                  marginVertical: 4,
-                  marginLeft: 5,
-                  marginRight: 5
+                  marginVertical: 2,
+                  marginLeft: 3
                 }}
                 tabStyle={{
                   flex: 1
                   // width: 'auto',
-                  // borderRadius: 30,
                 }}
                 renderTabBarItem={itemProps => {
-                  console.log('itemProps', JSON.stringify(itemProps, null, 2))
                   const { key, ...rest } = itemProps
                   return (
                     <TabBarItem
@@ -171,7 +193,7 @@ const Requests = () => {
                         <Text
                           style={{
                             fontSize: focused ? 14 : 14,
-                            padding:0
+                            padding: 0
                             // fontSize: 12,
                             // fontWeight: focused ? 'bold' : '500',
                             // color
