@@ -1,8 +1,8 @@
 import cn from 'clsx'
 import React from 'react'
 import { Dimensions, Text, View } from 'react-native'
-
-import { getStatusColor, Status } from '@/utils/helpers'
+ 
+import { getStatusColor, StatusText } from '@/utils/status.helper'
 
 type Props = {}
 type Scheme = 'red' | 'blue' | 'green'
@@ -63,7 +63,7 @@ const Banner = (props: Props) => {
             <Text
               className={cn(
                 'font-semibold mt-1 text-5xl',
-                getStatusColor(item.id as Status)
+                getStatusColor(item.id as StatusText)
               )}
             >
               {item.value}

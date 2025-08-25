@@ -5,7 +5,7 @@ export type TypeRootStackParamList = {
   Home: undefined
   Requests: undefined
   RequestDetail: {
-    id: string
+    id: number
   }
   Equipment: undefined
   Messages: undefined
