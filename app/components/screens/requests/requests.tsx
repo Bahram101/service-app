@@ -1,11 +1,5 @@
 import { useState } from 'react'
-import {
-  FlatList,
-  ScrollView,
-  Text,
-  View,
-  useWindowDimensions
-} from 'react-native'
+import { FlatList, Text, View, useWindowDimensions } from 'react-native'
 import { TabBar, TabBarItem, TabBarProps, TabView } from 'react-native-tab-view'
 
 import Layout from '@/components/layout/Layout'
@@ -13,50 +7,9 @@ import Heading from '@/components/ui/Heading'
 
 import { IRequest } from '@/types/request.interface'
 
-import RequestCard from './RequestCard/RequestCard'
-
-const activeData: IRequest[] = [
-  {
-    id: 1,
-    title: 'ЗАМЕНА КАРТРИДЖА',
-    number: '1564654',
-    date: '13 август',
-    time: '11:00 — 11:40',
-    address: 'Мкр. Мамыр-4, дом 138',
-    status: 1,
-    paymentType: '1'
-  },
-  {
-    id: 2,
-    title: 'УСТАНОВКА СИСТЕМЫ',
-    number: '1564674',
-    date: '13 август',
-    time: '11:40 — 12:20',
-    address: 'Мкр. Аксаи-4, дом 96, кв 10',
-    status: 2,
-    paymentType: '2'
-  },
-  {
-    id: 3,
-    title: 'ЗАМЕНА КАРТРИДЖА',
-    number: '1564632',
-    date: '13 август',
-    time: '11:00 — 11:40',
-    address: 'Мкр. Таугуль-2, дом 17',
-    status: 3,
-    paymentType: '1'
-  },
-  {
-    id: 4,
-    title: 'ПОТОП',
-    number: '1564854',
-    date: '13 август',
-    time: '11:00 — 11:40',
-    address: 'Мкр. Мамыр-4, дом 138',
-    status: 4,
-    paymentType: '1'
-  }
-]
+import ActiveRequestCard from './RequestCard/ActiveRequestCard'
+import DoneRequestCard from './RequestCard/DoneRequestCard'
+import FinishedRequestCard from './RequestCard/FinishedRequestCard'
 
 const Requests = () => {
   const layout = useWindowDimensions()
@@ -67,50 +20,88 @@ const Requests = () => {
     { key: 'finished', title: 'Завершенные' }
   ])
 
+  const activeData: IRequest[] = [
+    {
+      id: 1,
+      title: 'ЗАМЕНА КАРТРИДЖА',
+      number: '1564654',
+      date: '13 август',
+      time: '11:00 — 11:40',
+      address: 'Мкр. Мамыр-4, дом 138',
+      status: 1,
+      paymentType: '1',
+      paid: '34700'
+    },
+    {
+      id: 2,
+      title: 'УСТАНОВКА СИСТЕМЫ',
+      number: '1564674',
+      date: '13 август',
+      time: '11:40 — 12:20',
+      address: 'Мкр. Аксаи-4, дом 96, кв 10',
+      status: 2,
+      paymentType: '2',
+      paid: '15786'
+    },
+    {
+      id: 3,
+      title: 'ЗАМЕНА КАРТРИДЖА',
+      number: '1564632',
+      date: '13 август',
+      time: '11:00 — 11:40',
+      address: 'Мкр. Таугуль-2, дом 17',
+      status: 3,
+      paymentType: '1',
+      paid: '27300'
+    },
+    {
+      id: 4,
+      title: 'ПОТОП',
+      number: '1564854',
+      date: '13 август',
+      time: '11:00 — 11:40',
+      address: 'Мкр. Мамыр-4, дом 138',
+      status: 4,
+      paymentType: '1',
+      paid: '34700'
+    }
+  ]
+
   const renderScene = ({ route }: { route: { key: string } }) => {
     switch (route.key) {
       case 'active':
-        return <List data={activeData} />
+        return (
+          <FlatList
+            data={activeData}
+            renderItem={({ item }) => <ActiveRequestCard item={item} />}
+          />
+        )
       case 'done':
-        return <List data={activeData} />
+        return (
+          <FlatList
+            data={activeData}
+            renderItem={({ item }) => <DoneRequestCard item={item} />}
+          />
+        )
       case 'finished':
-        return <List data={activeData} />
+        return (
+          <>
+            <Text className='text-xl font-semibold mt-3 mb-2'>Завершенные заявки с 1 августа</Text>
+            <FlatList
+              data={activeData}
+              renderItem={({ item }) => <FinishedRequestCard item={item} />}
+            />
+          </>
+        )
       default:
         return null
     }
   }
 
-  const List = ({ data }: { data: any }) => {
-    if (!data.length) return <Text className='text-center mt-4'>Пусто</Text>
-
-    return (
-      <>
-        {index === 2 && (
-          <Text className='mt-2 text-lg font-bold'>
-            Завершенные заявки с 1 августа
-          </Text>
-        )}
-        <FlatList
-          data={data}
-          keyExtractor={i => i.id}
-          renderItem={({ item }) => (
-            <RequestCard item={item} tabIndex={index} />
-          )}
-        />
-      </>
-    )
-  }
-
-  console.log('index', index)
-
   return (
     <Layout>
       <Heading>Заявки</Heading>
       <View className='px-4 h-full pt-2'>
-        {/* <ScrollView
-          showsVerticalScrollIndicator={true}
-          contentContainerStyle={{ paddingBottom: 70 }}
-        > */}
         <TabView
           lazy
           navigationState={{ index, routes }}
@@ -127,7 +118,8 @@ const Requests = () => {
                 style={{
                   backgroundColor: '#D4D4D4',
                   height: 43,
-                  borderRadius: 40
+                  borderRadius: 40,
+                  marginBottom: 4
                 }}
                 contentContainerStyle={{
                   backgroundColor: 'transparent',
@@ -169,7 +161,6 @@ const Requests = () => {
             )
           }}
         />
-        {/* </ScrollView> */}
       </View>
     </Layout>
   )

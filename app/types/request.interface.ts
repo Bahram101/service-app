@@ -7,4 +7,5 @@ export interface IRequest {
   address: string
   status: number
   paymentType: string
+  paid: string
 }

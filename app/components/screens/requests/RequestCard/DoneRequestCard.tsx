@@ -1,0 +1,53 @@
+import { Feather } from '@expo/vector-icons'
+import cn from 'clsx'
+import React, { FC } from 'react'
+import { Pressable, Text, View } from 'react-native'
+
+import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+
+import { IRequest } from '@/types/request.interface'
+
+import { getPaymentLabel, getStatusMeta } from '@/utils/status.helper'
+
+import { COLORS } from '@/constants/colors'
+
+type DoneRequestCardProps = {
+  item: IRequest
+}
+
+const DoneRequestCard: FC<DoneRequestCardProps> = ({ item }) => {
+  const { navigate } = useTypedNavigation()
+  return (
+    <Pressable
+      className='bg-white mt-3 rounded-2xl p-4'
+      onPress={() => navigate('RequestDetail', { id: item.id })}
+    >
+      <View className='flex-row items-center pb-3 border-b mb-3 border-gray-200'>
+        <Feather
+          name='check'
+          size={14}
+          color={'white'}
+          className='mr-2 bg-primary rounded-full p-1'
+        />
+        <Text className='text-sm font-semibold'>ЗАЯВКА № {item.number}</Text>
+      </View>
+      <View className='flex-row justify-between'>
+        <View className='flex-row items-start gap-3 '>
+          <View className='gap-2'>
+            <View className='flex-row mb-1'>
+              <Feather name='map-pin' size={18} color={COLORS.grayDark} />
+              <Text className='ml-2'>{item.address}</Text>
+            </View>
+
+            <View className='flex-row'>
+              <Feather name={'credit-card'} size={18} color={COLORS.grayDark} />
+              <Text className='ml-2'>{getPaymentLabel(item.paymentType)}</Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </Pressable>
+  )
+}
+
+export default DoneRequestCard
