@@ -1,7 +1,7 @@
 import { Feather } from '@expo/vector-icons'
 import cn from 'clsx'
 import React, { FC, memo } from 'react'
-import { Pressable, Text, View } from 'react-native'
+import { Pressable, PressableStateCallbackType, Text, View } from 'react-native'
 
 import { IMenuItem, TypeNavigate } from './menu.interface'
 import { COLORS } from '@/constants/colors'
@@ -24,7 +24,7 @@ const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
       }}
       className='w-[20%] h-[70px] '
     >
-      {({ pressed }) => (
+      {({ pressed }: PressableStateCallbackType) => (
         <View
           className={cn(
             'flex justify-center items-center h-full',
@@ -35,10 +35,13 @@ const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
             className='mb-1'
             name={item.iconName}
             size={item.iconName === 'message-circle' ? 25 : 23}
-            color={isActive ? COLORS.green : COLORS.gray}
+            color={isActive ? COLORS.green : COLORS.grayDark}
           />
           <Text
-            className={cn('text-xs ', isActive ? 'text-primary' : 'text-gray-400')}
+            className={cn(
+              'text-xs ',
+              isActive ? 'text-primary' : 'text-grayDark'
+            )}
           >
             {item.label}
           </Text>

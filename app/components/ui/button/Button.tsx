@@ -5,7 +5,7 @@ import { Button, ButtonText } from '@/components/ui/button'
 
 import { IButton } from '@/types/button.interface'
 
-const   CustomBtn: FC<PropsWithChildren<IButton>> = ({
+const CustomBtn: FC<PropsWithChildren<IButton>> = ({
   children,
   className,
   ...rest

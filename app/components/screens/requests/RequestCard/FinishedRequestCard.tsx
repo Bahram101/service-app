@@ -1,9 +1,6 @@
-import { Feather } from '@expo/vector-icons'
-import cn from 'clsx'
+import { Feather } from '@expo/vector-icons' 
 import React, { FC } from 'react'
-import { Pressable, Text, View } from 'react-native'
-
-import { useTypedNavigation } from '@/hooks/useTypedNavigation'
+import { Text, View } from 'react-native' 
 
 import { IRequest } from '@/types/request.interface'
 

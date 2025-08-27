@@ -36,7 +36,7 @@ export const getPaymentLabel = (payment: string) => {
     case '1':
       return 'Наличными'
     case '2':
-      return 'Картой'
+      return 'Безналичный'
     default:
       return ''
   }

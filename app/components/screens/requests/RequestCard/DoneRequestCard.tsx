@@ -7,22 +7,20 @@ import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 import { IRequest } from '@/types/request.interface'
 
-import { getPaymentLabel, getStatusMeta } from '@/utils/status.helper'
+import { getPaymentLabel } from '@/utils/status.helper'
 
-import { COLORS } from '@/constants/colors'
+import { COLORS } from '@/constants/colors' 
 
 type DoneRequestCardProps = {
   item: IRequest
 }
 
-const DoneRequestCard: FC<DoneRequestCardProps> = ({ item }) => {
-  const { navigate } = useTypedNavigation()
+const DoneRequestCard: FC<DoneRequestCardProps> = ({ item }) => { 
   return (
-    <Pressable
-      className='bg-white mt-3 rounded-2xl p-4'
-      onPress={() => navigate('RequestDetail', { id: item.id })}
+    <View
+      className='bg-white mt-3 rounded-2xl p-4' 
     >
-      <View className='flex-row items-center pb-3 border-b mb-3 border-gray-200'>
+      <View className='flex-row items-center pb-3 border-b mb-3 border-grayLight'>
         <Feather
           name='check'
           size={14}
@@ -41,12 +39,13 @@ const DoneRequestCard: FC<DoneRequestCardProps> = ({ item }) => {
 
             <View className='flex-row'>
               <Feather name={'credit-card'} size={18} color={COLORS.grayDark} />
-              <Text className='ml-2'>{getPaymentLabel(item.paymentType)}</Text>
+              <Text className='ml-2'>{getPaymentLabel(item.paymentType)}:</Text>
+              <Text className='ml-2'>{item.paid}т</Text>
             </View>
           </View>
         </View>
-      </View>
-    </Pressable>
+      </View>  
+    </View>
   )
 }
 

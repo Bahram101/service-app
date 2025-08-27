@@ -92,7 +92,7 @@ const Messages = () => {
               <Pressable
                 key={item.id}
                 className={cn(
-                  'border-gray-200 p-4 flex-row justify-between items-center',
+                  'border-grayLight p-4 flex-row justify-between items-center',
                   departments.length - 1 !== index && 'border-b'
                 )}
                 onPress={() =>
@@ -109,12 +109,12 @@ const Messages = () => {
                     <Text className='text-lg text-primary mb-1'>
                       {item.name.toUpperCase()}
                     </Text>
-                    <Text className='text-xs text-gray-400'>
+                    <Text className='text-xs text-grayDark'>
                       Описание уведомлении
                     </Text>
                   </View>
                 </View>
-                <Text className='text-gray-600'>{item.date}</Text>
+                <Text className='text-sm '>{item.date}</Text>
               </Pressable>
             ))}
           </View>

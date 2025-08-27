@@ -18,7 +18,7 @@ const BottomMenu: FC<IButtonMenu> = props => {
   const isIOS = Platform.OS === 'ios'
   return (
     <View
-      className='flex-row border-t border-gray-200' 
+      className='flex-row border-t border-grayLight' 
       style={{
         paddingBottom: isIOS ? bottom - 10 : isAndroid ? bottom + 12 : 0
       }}

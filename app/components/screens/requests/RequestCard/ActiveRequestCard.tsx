@@ -7,7 +7,7 @@ import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 import { IRequest } from '@/types/request.interface'
 
-import { getPaymentLabel, getStatusMeta } from '@/utils/status.helper'
+import { getStatusMeta } from '@/utils/status.helper'
 
 import { COLORS } from '@/constants/colors'
 
@@ -22,38 +22,27 @@ const ActiveRequestCard: FC<ActiveRequestCardProps> = ({ item }) => {
       className='bg-white mt-3 rounded-2xl p-4'
       onPress={() => navigate('RequestDetail', { id: item.id })}
     >
-      <View
-        className={cn(
-          'flex-row items-center  pb-3 justify-between border-b mb-3 border-gray-200'
-        )}
-      >
+      <View className='flex-row items-center pb-3 justify-between border-b mb-3 border-grayLight'>
         <View className={cn('flex-row items-center')}>
-          <Text className='bg-gray-200 px-2 py-1 rounded-lg text-xs'>
+          <Text className='bg-primary text-white px-2 py-1 rounded-lg text-xs'>
             {item.title}
           </Text>
         </View>
-
         <Text className='text-sm font-semibold'>ЗАЯВКА № {item.number}</Text>
       </View>
       <View className='flex-row justify-between'>
-        <View
-          className={cn(
-            'flex-row items-start gap-3 pl-3 border-l-4 border-primary'
-          )}
-        >
+        <View className='flex-row items-start gap-3 pl-3 border-l-4 border-primary'>
           <View className='gap-2'>
             <>
               <Text>{item.date}</Text>
               <Text>{item.time}</Text>
             </>
-
             <View className='flex-row mb-1'>
               <Feather name='map-pin' size={18} color={COLORS.grayDark} />
               <Text className='ml-2'>{item.address}</Text>
             </View>
           </View>
         </View>
-
         <View className='flex-col-reverse'>
           <View className='flex-row items-center'>
             <Text

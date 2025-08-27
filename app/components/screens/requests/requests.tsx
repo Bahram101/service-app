@@ -10,6 +10,8 @@ import { IRequest } from '@/types/request.interface'
 import ActiveRequestCard from './RequestCard/ActiveRequestCard'
 import DoneRequestCard from './RequestCard/DoneRequestCard'
 import FinishedRequestCard from './RequestCard/FinishedRequestCard'
+import DoneSummary from './Summary/DoneSummary'
+import FinishedSummary from './Summary/FinishedSummary'
 
 const Requests = () => {
   const layout = useWindowDimensions()
@@ -74,22 +76,31 @@ const Requests = () => {
           <FlatList
             data={activeData}
             renderItem={({ item }) => <ActiveRequestCard item={item} />}
+            contentContainerStyle={{ paddingBottom: 115 }}
           />
         )
       case 'done':
         return (
-          <FlatList
-            data={activeData}
-            renderItem={({ item }) => <DoneRequestCard item={item} />}
-          />
+          <>
+            <FlatList
+              data={activeData}
+              renderItem={({ item }) => <DoneRequestCard item={item} />}
+              contentContainerStyle={{ paddingBottom: 115 }}
+              ListFooterComponent={<DoneSummary />} 
+            />
+          </>
         )
       case 'finished':
         return (
           <>
-            <Text className='text-xl font-semibold mt-3 mb-2'>Завершенные заявки с 1 августа</Text>
+            <Text className='text-xl font-semibold mt-3 mb-2'>
+              Завершенные заявки с 1 августа
+            </Text>
             <FlatList
               data={activeData}
               renderItem={({ item }) => <FinishedRequestCard item={item} />}
+              contentContainerStyle={{ paddingBottom: 115 }}
+              ListFooterComponent={<FinishedSummary/>}
             />
           </>
         )

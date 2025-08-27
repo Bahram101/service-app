@@ -100,7 +100,7 @@ const SetPin = (props: Props) => {
                       handleSave()
                     }
                   }}
-                  className='w-20 h-20 rounded-full bg-gray-200 justify-center items-center'
+                  className='w-20 h-20 rounded-full bg-grayLight justify-center items-center'
                 >
                   <Text className='text-2xl'>{item}</Text>
                 </TouchableOpacity>

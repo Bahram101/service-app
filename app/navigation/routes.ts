@@ -7,7 +7,7 @@ import { IRoute } from './navigation.types'
 import SetPin from '@/components/screens/Pin/SetPin'
 import EnterPin from '@/components/screens/Pin/EnterPin'
 import Requests from '@/components/screens/Requests/Requests'
-import RequestDetail from '@/components/screens/Requests/RequestDetail'
+import RequestDetail from '@/components/screens/Requests/RequestDetail/RequestDetail'
 import MessageDetail from '@/components/screens/Messages/MessageDetail'
 
 export const routes: IRoute[] = [

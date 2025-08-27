@@ -77,7 +77,7 @@ const RequestTypeList = (props: Props) => {
   ) : (
     <>
       <View className='mt-4'>
-        <Text className='text-2xl text-bold font-bold mb-4'>
+        <Text className='text-xl text-bold font-semibold mb-4'>
           Виды заявки на сегодня
         </Text>
       </View>

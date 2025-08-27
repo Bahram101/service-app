@@ -55,14 +55,14 @@ const Banner = (props: Props) => {
             className='bg-white rounded-xl px-3 py-3 items-center justify-center'
           >
             <Text
-              className='text-gray-900 text-xs mb-2 text-center items-center'
+              className='text-xs mb-2 text-center items-center'
               numberOfLines={2}
             >
               {item.title}
             </Text>
             <Text
               className={cn(
-                'font-semibold mt-1 text-5xl',
+                'font-bold mt-1 text-5xl',
                 getStatusColor(item.id as StatusText)
               )}
             >

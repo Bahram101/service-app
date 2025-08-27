@@ -8,7 +8,6 @@ import Heading from '@/components/ui/Heading'
 type Props = {}
 
 const Equipment = (props: Props) => {
-  const { width } = Dimensions.get('window')
 
   const equipments = [
     {
@@ -56,7 +55,7 @@ const Equipment = (props: Props) => {
             <View
               key={item.id}
               className={cn(
-                'border-gray-200 p-4 flex-row justify-between items-center',
+                'border-grayLight p-4 flex-row justify-between items-center',
                 equipments.length - 1 !== index && 'border-b'
               )}
             >
@@ -64,13 +63,13 @@ const Equipment = (props: Props) => {
                 <Text className='text-lg text-primary mb-1'>
                   {item.name.toUpperCase()}
                 </Text>
-                <Text className='text-xs text-gray-400'>
+                <Text className='text-xs text-grayDark'>
                   КОД ТОВАРА: ПМ-2531
                 </Text>
               </View>
               <Text
                 className={cn(
-                  'font-bold ',
+                  'text-lg',
                   Number(item.qty) < 5 ? 'text-error-500' : ''
                 )}
               >
