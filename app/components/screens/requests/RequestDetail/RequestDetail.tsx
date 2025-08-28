@@ -1,25 +1,19 @@
 import { Feather } from '@expo/vector-icons'
 import cn from 'clsx'
-import React from 'react'
-import { Alert, Linking, Pressable, Text, View } from 'react-native'
+import React, { useRef } from 'react'
+import { Alert, Animated, Pressable, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
+import AnimatedPressable from '@/components/ui/button/AnimatedPressable'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
+import { open2GIS } from '@/services/maps/open2gis'
+
+import { COLORS } from '@/constants/colors'
+
 type Props = {}
-
-const open2GIS = (address: string) => {
-  const url = `dgis://2gis.ru/routeSearch/rsType/car/to/${encodeURIComponent(address)}`
-
-  Linking.openURL(url).catch(() => {
-    Alert.alert(
-      'Ошибка',
-      'Не удалось открыть 2GIS. Убедитесь, что приложение установлено.'
-    )
-  })
-}
 
 const RequestDetail = (props: Props) => {
   const { goBack, navigate } = useTypedNavigation()
@@ -38,6 +32,7 @@ const RequestDetail = (props: Props) => {
       date: '21 январь 2024'
     }
   ]
+
   return (
     <Layout>
       <Heading backIcon={true}>Заявка №1564654</Heading>
@@ -63,12 +58,22 @@ const RequestDetail = (props: Props) => {
             <Text className='text-lg border-l-4 border-primary pl-3 ml-2'>
               Мкр. Аксай-4, дом 96, кв 10 Мкр.
             </Text>
-            <Pressable onPress={() => open2GIS('Мкр. Аксай-4, дом 96')}>
-              <Feather
-                name='external-link'
-                size={22}
-                style={{ color: '#007AFF' }}
-              />
+            <Pressable onPressIn={() => open2GIS()} delayPressIn={0}>
+              {({ pressed }) => (
+                <Feather
+                  name='external-link'
+                  size={22}
+                  style={[
+                    { color: pressed ? COLORS.grayLight : '#007AFF' },
+                    pressed &&
+                      {
+                        // backgroundColor: COLORS.grayDark,
+                        // padding: 3,
+                        // borderRadius: '7px'
+                      }
+                  ]}
+                />
+              )}
             </Pressable>
           </View>
         </View>
@@ -100,22 +105,38 @@ const RequestDetail = (props: Props) => {
 
         <View className='gap-3'>
           <View className='flex-row gap-3'>
-            <Pressable className='bg-blue flex-1 rounded-2xl p-4 flex-row items-center justify-around'>
-              <Feather
-                name='message-circle'
-                size={30}
-                style={{ color: 'white' }}
-              />
-              <View className='flex-col items-center '>
-                <Text className='font-bold text-white'>Чат с</Text>
-                <Text className='font-bold text-white'>клиентом</Text>
-              </View>
+            <Pressable className='flex-1'>
+              {({ pressed }) => (
+                <View
+                  className={cn(
+                    'flex-1 rounded-2xl p-4 flex-row items-center justify-around',
+                    pressed ? 'bg-blueDark' : 'bg-blue'
+                  )}
+                >
+                  <Feather
+                    name='message-circle'
+                    size={30}
+                    style={{ color: 'white' }}
+                  />
+                  <View className='flex-col items-center '>
+                    <Text className='font-bold text-white'>Чат с</Text>
+                    <Text className='font-bold text-white'>клиентом</Text>
+                  </View>
+                </View>
+              )}
             </Pressable>
-            <Pressable className='bg-primary flex-1 rounded-2xl p-4 flex-row items-center justify-around'>
-              <Feather name='phone-call' size={30} style={{ color: 'white' }} />
-              <View className='flex-col items-center '>
-                <Text className='font-bold text-white'>Позвонить</Text>
-                <Text className='font-bold text-white'>клиенту</Text>
+
+            <Pressable className='flex-1'>
+              <View className='bg-primary rounded-2xl p-4 flex-row items-center justify-around'>
+                <Feather
+                  name='phone-call'
+                  size={30}
+                  style={{ color: 'white' }}
+                />
+                <View className='flex-col items-center '>
+                  <Text className='font-bold text-white'>Позвонить</Text>
+                  <Text className='font-bold text-white'>клиенту</Text>
+                </View>
               </View>
             </Pressable>
           </View>
