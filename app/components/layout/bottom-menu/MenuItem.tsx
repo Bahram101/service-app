@@ -35,7 +35,7 @@ const MenuItem: FC<MenuItemProps> = ({ item, nav, currentRoute }) => {
             className='mb-1'
             name={item.iconName}
             size={item.iconName === 'message-circle' ? 25 : 23}
-            color={isActive ? COLORS.green : COLORS.grayDark}
+            color={isActive ? COLORS.primary : COLORS.grayDark}
           />
           <Text
             className={cn(

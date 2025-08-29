@@ -105,47 +105,43 @@ const RequestDetail = (props: Props) => {
 
         <View className='gap-3'>
           <View className='flex-row gap-3'>
-            <Pressable className='flex-1'>
-              {({ pressed }) => (
-                <View
-                  className={cn(
-                    'flex-1 rounded-2xl p-4 flex-row items-center justify-around',
-                    pressed ? 'bg-blueDark' : 'bg-blue'
-                  )}
-                >
-                  <Feather
-                    name='message-circle'
-                    size={30}
-                    style={{ color: 'white' }}
-                  />
-                  <View className='flex-col items-center '>
-                    <Text className='font-bold text-white'>Чат с</Text>
-                    <Text className='font-bold text-white'>клиентом</Text>
-                  </View>
+            <AnimatedPressable bg={COLORS.blue} bgPressed={COLORS.blueDark} className='flex-1'>
+              <View className='flex-row gap-3 items-center'>
+                <Feather
+                  name='message-circle'
+                  size={30}
+                  style={{ color: 'white' }}
+                />
+                <View className='flex-col items-center'>
+                  <Text className='font-bold text-white'>Чат с</Text>
+                  <Text className='font-bold text-white'>клиентом</Text>
                 </View>
-              )}
-            </Pressable>
-
-            <Pressable className='flex-1'>
-              <View className='bg-primary rounded-2xl p-4 flex-row items-center justify-around'>
+              </View>
+            </AnimatedPressable>
+            <AnimatedPressable
+              bg={COLORS.primary}
+              bgPressed={COLORS.primaryDark}
+              className='flex-1'
+            >
+              <View className='flex-row gap-3 items-center'>
                 <Feather
                   name='phone-call'
                   size={30}
                   style={{ color: 'white' }}
                 />
-                <View className='flex-col items-center '>
+                <View className='flex-col items-center'>
                   <Text className='font-bold text-white'>Позвонить</Text>
                   <Text className='font-bold text-white'>клиенту</Text>
                 </View>
               </View>
-            </Pressable>
+            </AnimatedPressable>
           </View>
-          <Pressable className=' bg-yellow-400 p-5 rounded-2xl items-center'>
+          <AnimatedPressable bg={COLORS.yellow} bgPressed={COLORS.yellowDark}>
             <View className='flex-row gap-3 items-center'>
-              <Feather name='map' size={30} />
-              <Text className='text-base font-bold'>Принять</Text>
+              <Feather name='map' size={24} color='black' />
+              <Text className='text-black font-bold'>Принять</Text>
             </View>
-          </Pressable>
+          </AnimatedPressable>
         </View>
       </View>
     </Layout>

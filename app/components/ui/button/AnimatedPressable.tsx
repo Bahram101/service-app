@@ -1,15 +1,19 @@
 import cn from 'clsx'
 import React, { FC, ReactNode, useRef } from 'react'
-import { Animated, Pressable, Text, View } from 'react-native'
+import { Animated, Pressable, Text, View, ViewStyle } from 'react-native'
 
 type AnimatedPressableProps = {
   children: ReactNode
   className?: string
+  bg?: string
+  bgPressed?: string
 }
 
 const AnimatedPressable: FC<AnimatedPressableProps> = ({
   children,
-  className
+  className,
+  bg,
+  bgPressed
 }) => {
   const scale = useRef(new Animated.Value(1)).current
   const onPressIn = () => {
@@ -27,15 +31,21 @@ const AnimatedPressable: FC<AnimatedPressableProps> = ({
     }).start()
   }
 
-  console.log('child', children)
-
   return (
-    <Pressable className='flex-1'>
-      {({ pressed }) => (
-        <View className={cn(className, pressed && 'bg-blueDark')}>
-          {children}
-        </View>
-      )}
+    <Pressable className={cn('flex-row', className)}>
+      {({ pressed }) => {
+        return (
+          <View
+            className={cn(
+              ' flex-1 rounded-2xl p-4 items-center justify-around',
+              className
+            )}
+            style={{ backgroundColor: pressed ? bgPressed : bg } as ViewStyle}
+          >
+            {children}
+          </View>
+        )
+      }}
     </Pressable>
   )
 }

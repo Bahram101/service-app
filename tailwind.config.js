@@ -23,7 +23,6 @@ module.exports = {
         blueDark: '#0066D3',
         grayLight: '#E5E7EB',
         grayMedium:'#D1D1D6',
-        // grayDark: '#B1B1B5',
         grayDark: '#A3A3A3',
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',

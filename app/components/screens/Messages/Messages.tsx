@@ -103,7 +103,7 @@ const Messages = () => {
                   <Feather
                     name={item.icon}
                     size={30}
-                    style={{ color: COLORS.green }}
+                    style={{ color: COLORS.primary }}
                   />
                   <View className='flex-col ml-4'>
                     <Text className='text-lg text-primary mb-1'>
