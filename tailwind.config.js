@@ -22,7 +22,7 @@ module.exports = {
         blue: '#007AFF',
         blueDark: '#0066D3',
         grayLight: '#E5E7EB',
-        grayMedium:'#D1D1D6',
+        grayMedium: '#D1D1D6',
         grayDark: '#A3A3A3',
         secondary: {
           0: 'rgb(var(--color-secondary-0)/<alpha-value>)',
@@ -190,5 +190,5 @@ module.exports = {
       }
     }
   },
-  plugins: [gluestackPlugin]
+  // plugins: [require('@gluestack-ui/nativewind-utils/tailwind-plugin')]
 }

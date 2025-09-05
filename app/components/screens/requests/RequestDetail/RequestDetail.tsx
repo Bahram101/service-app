@@ -5,7 +5,25 @@ import { Alert, Animated, Pressable, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionContentText,
+  AccordionHeader,
+  AccordionIcon,
+  AccordionItem,
+  AccordionTitleText,
+  AccordionTrigger
+} from '@/components/ui/accordion'
+import BaseAccordion from '@/components/ui/accordion/BaseAccardion'
 import AnimatedPressable from '@/components/ui/button/AnimatedPressable'
+import { Divider } from '@/components/ui/divider'
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  Icon,
+  TrashIcon
+} from '@/components/ui/icon'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
@@ -18,25 +36,46 @@ type Props = {}
 const RequestDetail = (props: Props) => {
   const { goBack, navigate } = useTypedNavigation()
 
-  const serviceHistories = [
-    {
-      id: 1,
-      date: '13 август 2023'
+  const request = {
+    client: {
+      name: 'Асрор Умаров',
+      address: 'Мкр. Аксай-4, дом 96, кв 10',
+      problem: 'Устранить проблемы'
     },
-    {
-      id: 2,
-      date: '19 ноябрь 2023'
+    service: ['Замена картриджа', 'Замена помпы', 'Устранить проблемы'],
+    device: {
+      id: '4635-001495',
+      product: 'CEBILON DIGITAL UNIQUE',
+      sn: '348045',
+      date: '2017-10-11'
     },
-    {
-      id: 3,
-      date: '21 январь 2024'
-    }
-  ]
+    history: [
+      {
+        id: 1,
+        date: '13 август 2023'
+      },
+      {
+        id: 2,
+        date: '19 ноябрь 2023'
+      },
+      {
+        id: 3,
+        date: '21 январь 2024'
+      }
+    ]
+  }
 
   return (
     <Layout>
       <Heading backIcon={true}>Заявка №1564654</Heading>
+
       <View className='px-4 h-full pt-3 gap-3'>
+        <BaseAccordion title='Данные клиента'>
+          <Text>{request.client.name}</Text>
+          <Text>{request.client.address}</Text>
+          <Text>{request.client.problem}</Text>
+        </BaseAccordion>
+
         <View className='bg-white p-4 rounded-2xl'>
           <View className='flex-row items-center border-b pb-4 border-grayLight'>
             <Feather name='user' size={22} style={{ color: '#15803d' }} />
@@ -58,7 +97,7 @@ const RequestDetail = (props: Props) => {
             <Text className='text-lg border-l-4 border-primary pl-3 ml-2'>
               Мкр. Аксай-4, дом 96, кв 10 Мкр.
             </Text>
-            <Pressable onPressIn={() => open2GIS()} delayPressIn={0}>
+            <Pressable onPressIn={() => open2GIS()}>
               {({ pressed }) => (
                 <Feather
                   name='external-link'
@@ -85,12 +124,12 @@ const RequestDetail = (props: Props) => {
               ИСТОРИЯ ОБСЛУЖИВАНИЕ
             </Text>
           </View>
-          {serviceHistories.map((history, index) => (
+          {request.history.map((history, index) => (
             <View
               key={history.id}
               className={cn(
                 'flex-row items-center justify-between pt-4 border-grayLight',
-                serviceHistories.length - 1 !== index && 'border-b pb-3'
+                request.length - 1 !== index && 'border-b pb-3'
               )}
             >
               <Text className='border-l-4 border-primary pl-3 ml-2'>
@@ -105,7 +144,11 @@ const RequestDetail = (props: Props) => {
 
         <View className='gap-3'>
           <View className='flex-row gap-3'>
-            <AnimatedPressable bg={COLORS.blue} bgPressed={COLORS.blueDark} className='flex-1'>
+            <AnimatedPressable
+              bg={COLORS.blue}
+              bgPressed={COLORS.blueDark}
+              className='flex-1'
+            >
               <View className='flex-row gap-3 items-center'>
                 <Feather
                   name='message-circle'
