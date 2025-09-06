@@ -45,7 +45,7 @@
     "react-native-css-interop": "^0.1.22",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-pager-view": "6.7.1",
-    "react-native-reanimated": "^3.18.0",
+    "react-native-reanimated": "^3.17.0",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.13.1",
     "react-native-tab-view": "^4.1.3",
