@@ -32,19 +32,19 @@ const BaseAccordion: FC<BaseAccordionProps> = ({ title, children, icon }) => {
       isDisabled={false}
       className='rounded-2xl px-4'
     >
-      <AccordionItem value='a' className='rounded-2xl '>
+      <AccordionItem value='a' className='rounded-2xl'>
         <AccordionTrigger className='pb-3 p-0'>
           {({ isExpanded }: { isExpanded: any }) => {
             return (
               <AccordionHeader
                 className={cn(
-                  'w-full flex-row justify-between py-3 border-grayLight ',
+                  'w-full flex-row justify-between py-3 border-grayLight',
                   isExpanded && 'border-b'
                 )}
               >
-                <View className='flex-row gap-2 items-center  '>
+                <View className='flex-row gap-2 items-center'>
                   <Feather name={icon} size={22} style={{ color: '#15803d' }} />
-                  <AccordionTitleText className='text-primary uppercase '>
+                  <AccordionTitleText className='text-primary uppercase ml-2'>
                     {title}
                   </AccordionTitleText>
                 </View>

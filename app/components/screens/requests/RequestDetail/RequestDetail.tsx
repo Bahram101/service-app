@@ -5,7 +5,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
-import BaseAccordion from '@/components/ui/accordion/BaseAccardion'
+import BaseAccordion from '@/components/ui/accordion/BaseAccordion'
 import AnimatedPressable from '@/components/ui/button/AnimatedPressable'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
@@ -27,7 +27,7 @@ const RequestDetail = () => {
     device: {
       id: '4635-001495',
       product: 'CEBILON DIGITAL UNIQUE',
-      sn: '348045',
+      cn: '348045',
       date: '2017-10-11'
     },
     history: [
@@ -49,10 +49,10 @@ const RequestDetail = () => {
   return (
     <Layout>
       <Heading backIcon={true}>Заявка №1564654</Heading>
-      <ScrollView 
-      className='min-h-full'
+      <ScrollView
+        className='min-h-full'
         showsVerticalScrollIndicator={true}
-        contentContainerStyle={{ paddingBottom: 70, flexGrow: 1 }}
+        contentContainerStyle={{ paddingBottom: 150 }}
       >
         <View className='px-4 h-full pt-3 gap-3'>
           <BaseAccordion title='Данные клиента' icon='user'>
@@ -68,9 +68,26 @@ const RequestDetail = () => {
           </BaseAccordion>
 
           <BaseAccordion title='Данные аппарата' icon='alert-circle'>
-            <Text>{request.service[0]}</Text>
-            <Text>{request.service[1]}</Text>
-            <Text>{request.service[2]}</Text>
+            <Text>
+              Зав.№: <Text className='font-bold'>{request.device.id}</Text>
+            </Text>
+            <Text>
+              Продукт:
+              <Text className='font-bold'>{request.device.product}</Text>
+            </Text>
+            <Text>
+              CN: <Text className='font-bold'>{request.device.cn}</Text>
+            </Text>
+            <Text>
+              Дата продажи:
+              <Text className='font-bold'> {request.device.date}</Text>
+            </Text>
+          </BaseAccordion>
+
+          <BaseAccordion title='История обслуживания' icon='clock'>
+            <Text>{request.client.name}</Text>
+            <Text>{request.client.address}</Text>
+            <Text>{request.client.problem}</Text>
           </BaseAccordion>
 
           <View className='gap-3'>
@@ -92,6 +109,7 @@ const RequestDetail = () => {
                   </View>
                 </View>
               </AnimatedPressable>
+
               <AnimatedPressable
                 bg={COLORS.primary}
                 bgPressed={COLORS.primaryDark}
@@ -110,7 +128,10 @@ const RequestDetail = () => {
                 </View>
               </AnimatedPressable>
             </View>
-            <AnimatedPressable bg={COLORS.yellow} bgPressed={COLORS.yellowDark}>
+            <AnimatedPressable
+              bg={COLORS.primary}
+              bgPressed={COLORS.primaryDark}
+            >
               <View className='flex-row gap-3 items-center'>
                 <Feather name='map' size={24} color='black' />
                 <Text className='text-black font-bold'>Принять</Text>
