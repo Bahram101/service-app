@@ -1,19 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 import { Loader } from '@/components/ui/Loader'
 import CustomBtn from '@/components/ui/button/Button'
-import {
-  Checkbox,
-  CheckboxGroup,
-  CheckboxIcon,
-  CheckboxIndicator,
-  CheckboxLabel
-} from '@/components/ui/checkbox'
 import { Field } from '@/components/ui/field/Field'
-import { CheckIcon } from '@/components/ui/icon'
 
 import { IAuthFormData } from '@/types/auth.interface'
 
