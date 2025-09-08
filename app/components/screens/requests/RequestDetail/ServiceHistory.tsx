@@ -1,10 +1,19 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { Text } from 'react-native'
 
-type Props = {}
+import BaseAccordion from '@/components/ui/accordion/BaseAccordion'
 
-const ServiceHistory = (props: Props) => {
+type ServiceHistoryProps = {
+  request: any
+}
+
+const ServiceHistory: FC<ServiceHistoryProps> = ({ request }) => {
   return (
-    <div>ServiceHistory</div>
+    <BaseAccordion title='История обслуживания' icon='clock'>
+      {request.history.map((item:any, i:number) => (
+        <Text key={i}>{item.date}</Text>
+      ))}
+    </BaseAccordion>
   )
 }
 

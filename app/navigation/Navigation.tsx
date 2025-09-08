@@ -38,7 +38,7 @@ const Navigation = () => {
   )
 
   if (user?.user_id && hasPin === null) {
-    return null // SplashScreen или loader
+    return null
   }
 
   return (

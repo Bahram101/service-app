@@ -13,7 +13,7 @@ type ClientInfoProps = {
 
 const ClientInfo: FC<ClientInfoProps> = ({ title, request, icon }) => {
   return (
-    <BaseAccordion title={title} icon={icon}>
+    <BaseAccordion title='Информация о клиенте' icon={icon}>
       <Text>{request.client.name}</Text>
       <Text>{request.client.address}</Text>
       <Text>{request.client.problem}</Text>

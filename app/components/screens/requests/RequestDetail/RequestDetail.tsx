@@ -6,13 +6,16 @@ import { Pressable, ScrollView, Text, View } from 'react-native'
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
 import BaseAccordion from '@/components/ui/accordion/BaseAccordion'
+import InfoAccordion from '@/components/ui/accordion/InfoAccordion'
 import AnimatedPressable from '@/components/ui/button/AnimatedPressable'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 import { open2GIS } from '@/services/maps/open2gis'
 
+import DeviceData from './DeviceData'
 import { COLORS } from '@/constants/colors'
+import ServiceHistory from './ServiceHistory'
 
 const RequestDetail = () => {
   const { goBack, navigate } = useTypedNavigation()
@@ -55,88 +58,100 @@ const RequestDetail = () => {
         contentContainerStyle={{ paddingBottom: 150 }}
       >
         <View className='px-4 h-full pt-3 gap-3'>
-          <BaseAccordion title='Данные клиента' icon='user'>
-            <Text>{request.client.name}</Text>
-            <Text>{request.client.address}</Text>
-            <Text>{request.client.problem}</Text>
-          </BaseAccordion>
+          <InfoAccordion
+            title='Данные клиента'
+            icon='user'
+            items={[
+              request.client.name,
+              request.client.address,
+              request.client.problem
+            ]}
+          />
 
-          <BaseAccordion title='Вид сервиса' icon='settings'>
-            <Text>{request.service[0]}</Text>
-            <Text>{request.service[1]}</Text>
-            <Text>{request.service[2]}</Text>
-          </BaseAccordion>
+          <InfoAccordion
+            title='Вид сервиса'
+            icon='settings'
+            items={request.service}
+          />
 
-          <BaseAccordion title='Данные аппарата' icon='alert-circle'>
-            <Text>
-              Зав.№: <Text className='font-bold'>{request.device.id}</Text>
-            </Text>
-            <Text>
-              Продукт:
-              <Text className='font-bold'>{request.device.product}</Text>
-            </Text>
-            <Text>
-              CN: <Text className='font-bold'>{request.device.cn}</Text>
-            </Text>
-            <Text>
-              Дата продажи:
-              <Text className='font-bold'> {request.device.date}</Text>
-            </Text>
-          </BaseAccordion>
+          <DeviceData request={request} />
 
-          <BaseAccordion title='История обслуживания' icon='clock'>
-            <Text>{request.client.name}</Text>
-            <Text>{request.client.address}</Text>
-            <Text>{request.client.problem}</Text>
-          </BaseAccordion>
+          <ServiceHistory request={request}/>
 
           <View className='gap-3'>
             <View className='flex-row gap-3'>
               <AnimatedPressable
-                bg={COLORS.blue}
-                bgPressed={COLORS.blueDark}
+                bg='#fff'
+                bgPressed={COLORS.grayLight}
                 className='flex-1'
               >
-                <View className='flex-row gap-3 items-center'>
+                <View className='flex-row gap-2 items-center'>
                   <Feather
                     name='message-circle'
                     size={30}
-                    style={{ color: 'white' }}
+                    color={COLORS.blue}
                   />
                   <View className='flex-col items-center'>
-                    <Text className='font-bold text-white'>Чат с</Text>
-                    <Text className='font-bold text-white'>клиентом</Text>
+                    <Text className='font-semibold text-blue'>Чат с</Text>
+                    <Text className='font-semibold text-blue'>клиентом</Text>
                   </View>
                 </View>
               </AnimatedPressable>
 
               <AnimatedPressable
-                bg={COLORS.primary}
-                bgPressed={COLORS.primaryDark}
+                bg='#fff'
+                bgPressed={COLORS.grayLight}
                 className='flex-1'
               >
-                <View className='flex-row gap-3 items-center'>
-                  <Feather
-                    name='phone-call'
-                    size={30}
-                    style={{ color: 'white' }}
-                  />
+                <View className='flex-row gap-2 items-center'>
+                  <Feather name='phone-call' size={30} color={COLORS.primary} />
                   <View className='flex-col items-center'>
-                    <Text className='font-bold text-white'>Позвонить</Text>
-                    <Text className='font-bold text-white'>клиенту</Text>
+                    <Text className='font-semibold text-primary'>
+                      Позвонить
+                    </Text>
+                    <Text className='font-semibold text-primary'>клиенту</Text>
                   </View>
                 </View>
               </AnimatedPressable>
             </View>
+
             <AnimatedPressable
               bg={COLORS.primary}
               bgPressed={COLORS.primaryDark}
             >
               <View className='flex-row gap-3 items-center'>
-                <Feather name='map' size={24} color='black' />
-                <Text className='text-black font-bold'>Принять</Text>
+                <Feather name='map' size={24} color='white' />
+                <Text className='text-white font-semibold py-3'>Принять</Text>
               </View>
             </AnimatedPressable>
+
+            <View className='flex-row gap-3'>
+              <AnimatedPressable
+                bg={COLORS.yellow}
+                bgPressed={COLORS.yellowDark}
+                className='flex-1'
+              >
+                <View className='flex-row gap-2 items-center'>
+                  <Feather name='message-circle' size={30} />
+                  <View className='flex-col items-center'>
+                    <Text className='font-semibold'>Перенос</Text>
+                  </View>
+                </View>
+              </AnimatedPressable>
+
+              <AnimatedPressable
+                bg={COLORS.red}
+                bgPressed={COLORS.redDark}
+                className='flex-1'
+              >
+                <View className='flex-row gap-2 items-center'>
+                  <Feather name='x-circle' size={30} color='white' />
+                  <View className='flex-col items-center'>
+                    <Text className='font-semibold text-white'>Отменить</Text>
+                  </View>
+                </View>
+              </AnimatedPressable>
+            </View>
           </View>
         </View>
       </ScrollView>

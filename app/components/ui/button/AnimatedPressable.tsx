@@ -37,7 +37,7 @@ const AnimatedPressable: FC<AnimatedPressableProps> = ({
         return (
           <View
             className={cn(
-              'flex-1 rounded-2xl p-4 items-center justify-around'
+              'flex-1 rounded-2xl p-4 items-center justify-around',
               // className
             )}
             style={{ backgroundColor: pressed ? bgPressed : bg } as ViewStyle}
