@@ -7,11 +7,12 @@ import { TypeFeatherIconNames } from '@/types/icon.interface'
 
 type DeviceDataProps = {
   request: any
+  value?:string
 }
 
-const DeviceData: FC<DeviceDataProps> = ({ request }) => {
+const DeviceData: FC<DeviceDataProps> = ({ request, value }) => {
   return (
-    <BaseAccordion title='Данные аппарата' icon='alert-circle'>
+    <BaseAccordion title='Данные аппарата' icon='alert-circle' value={value}>
       <View className='flex-row gap-2'>
         <Text>Зав.№:</Text>
         <Text className='font-bold'>{request.device.id}</Text>

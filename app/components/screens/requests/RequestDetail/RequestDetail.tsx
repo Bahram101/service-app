@@ -5,6 +5,7 @@ import { Pressable, ScrollView, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
+import { Accordion } from '@/components/ui/accordion'
 import InfoAccordion from '@/components/ui/accordion/InfoAccordion'
 import ActionButton from '@/components/ui/button/ActionButton'
 
@@ -57,25 +58,37 @@ const RequestDetail = () => {
         contentContainerStyle={{ paddingBottom: 150 }}
       >
         <View className='px-4 h-full pt-3 gap-3'>
-          <InfoAccordion
-            title='Данные клиента'
-            icon='user'
-            items={[
-              request.client.name,
-              request.client.address,
-              request.client.problem
-            ]}
-          />
+          <Accordion
+            size='md'
+            variant='filled'
+            isCollapsible={true}
+            isDisabled={false}
+            type='multiple'
+            defaultValue={['client', 'service']}
+            className='rounded-2xl gap-3 bg-transparent'
+          >
+            <InfoAccordion
+              title='Данные клиента'
+              icon='user'
+              items={[
+                request.client.name,
+                request.client.address,
+                request.client.problem
+              ]}
+              value='client'
+            />
 
-          <InfoAccordion
-            title='Вид сервиса'
-            icon='settings'
-            items={request.service}
-          />
+            <InfoAccordion
+              title='Вид сервиса'
+              icon='settings'
+              items={request.service}
+              value='service'
+            />
 
-          <DeviceData request={request} />
+            <DeviceData request={request} value='device' />
 
-          <ServiceHistory request={request} />
+            <ServiceHistory request={request} value='history' />
+          </Accordion>
 
           <View className='gap-3'>
             <View className='flex-row gap-3'>
