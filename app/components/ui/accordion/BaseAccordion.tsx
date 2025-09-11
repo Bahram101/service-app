@@ -14,6 +14,7 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion'
 import { ChevronDownIcon, ChevronUpIcon } from '@/components/ui/icon'
+
 import { TypeFeatherIconNames } from '@/types/icon.interface'
 
 type BaseAccordionProps = {
@@ -25,6 +26,7 @@ type BaseAccordionProps = {
 const BaseAccordion: FC<BaseAccordionProps> = ({ title, children, icon }) => {
   return (
     <Accordion
+      defaultValue={['a']}
       size='md'
       variant='filled'
       type='single'
@@ -65,7 +67,9 @@ const BaseAccordion: FC<BaseAccordionProps> = ({ title, children, icon }) => {
         </AccordionTrigger>
         <AccordionContent className='p-0 py-3'>
           <AccordionContentText className='pl-[9px]'>
-            <View className='gap-3 border-l-4 border-primary pl-3'>{children}</View>
+            <View className='gap-3 border-l-4 border-primary pl-3'>
+              {children}
+            </View>
           </AccordionContentText>
         </AccordionContent>
       </AccordionItem>

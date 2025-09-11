@@ -5,17 +5,16 @@ import { Pressable, ScrollView, Text, View } from 'react-native'
 
 import Layout from '@/components/layout/Layout'
 import Heading from '@/components/ui/Heading'
-import BaseAccordion from '@/components/ui/accordion/BaseAccordion'
 import InfoAccordion from '@/components/ui/accordion/InfoAccordion'
-import AnimatedPressable from '@/components/ui/button/AnimatedPressable'
+import ActionButton from '@/components/ui/button/ActionButton'
 
 import { useTypedNavigation } from '@/hooks/useTypedNavigation'
 
 import { open2GIS } from '@/services/maps/open2gis'
 
 import DeviceData from './DeviceData'
-import { COLORS } from '@/constants/colors'
 import ServiceHistory from './ServiceHistory'
+import { COLORS } from '@/constants/colors'
 
 const RequestDetail = () => {
   const { goBack, navigate } = useTypedNavigation()
@@ -76,81 +75,47 @@ const RequestDetail = () => {
 
           <DeviceData request={request} />
 
-          <ServiceHistory request={request}/>
+          <ServiceHistory request={request} />
 
           <View className='gap-3'>
             <View className='flex-row gap-3'>
-              <AnimatedPressable
+              <ActionButton
+                icon='message-circle'
+                color={COLORS.blue}
                 bg='#fff'
                 bgPressed={COLORS.grayLight}
-                className='flex-1'
-              >
-                <View className='flex-row gap-2 items-center'>
-                  <Feather
-                    name='message-circle'
-                    size={30}
-                    color={COLORS.blue}
-                  />
-                  <View className='flex-col items-center'>
-                    <Text className='font-semibold text-blue'>Чат с</Text>
-                    <Text className='font-semibold text-blue'>клиентом</Text>
-                  </View>
-                </View>
-              </AnimatedPressable>
-
-              <AnimatedPressable
+                text={['Чат с', 'клиентом']}
+              />
+              <ActionButton
+                icon='phone-call'
+                color={COLORS.primary}
                 bg='#fff'
                 bgPressed={COLORS.grayLight}
-                className='flex-1'
-              >
-                <View className='flex-row gap-2 items-center'>
-                  <Feather name='phone-call' size={30} color={COLORS.primary} />
-                  <View className='flex-col items-center'>
-                    <Text className='font-semibold text-primary'>
-                      Позвонить
-                    </Text>
-                    <Text className='font-semibold text-primary'>клиенту</Text>
-                  </View>
-                </View>
-              </AnimatedPressable>
+                text={['Позвонить', 'клиенту']}
+              />
             </View>
-
-            <AnimatedPressable
-              bg={COLORS.primary}
-              bgPressed={COLORS.primaryDark}
-            >
-              <View className='flex-row gap-3 items-center'>
-                <Feather name='map' size={24} color='white' />
-                <Text className='text-white font-semibold py-3'>Принять</Text>
-              </View>
-            </AnimatedPressable>
-
+            <View className='flex-row'>
+              <ActionButton
+                icon='map'
+                bg={COLORS.primary}
+                bgPressed={COLORS.primaryDark}
+                text={['Принять']}
+              />
+            </View>
             <View className='flex-row gap-3'>
-              <AnimatedPressable
+              <ActionButton
+                icon='corner-up-right'
+                color='black'
                 bg={COLORS.yellow}
                 bgPressed={COLORS.yellowDark}
-                className='flex-1'
-              >
-                <View className='flex-row gap-2 items-center'>
-                  <Feather name='message-circle' size={30} />
-                  <View className='flex-col items-center'>
-                    <Text className='font-semibold'>Перенос</Text>
-                  </View>
-                </View>
-              </AnimatedPressable>
-
-              <AnimatedPressable
+                text={['Перенос']}
+              />
+              <ActionButton
+                icon='x-circle'
                 bg={COLORS.red}
                 bgPressed={COLORS.redDark}
-                className='flex-1'
-              >
-                <View className='flex-row gap-2 items-center'>
-                  <Feather name='x-circle' size={30} color='white' />
-                  <View className='flex-col items-center'>
-                    <Text className='font-semibold text-white'>Отменить</Text>
-                  </View>
-                </View>
-              </AnimatedPressable>
+                text={['Отменить']}
+              />
             </View>
           </View>
         </View>
