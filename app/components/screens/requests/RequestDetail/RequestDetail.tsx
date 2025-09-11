@@ -77,16 +77,13 @@ const RequestDetail = () => {
               ]}
               value='client'
             />
-
             <InfoAccordion
               title='Вид сервиса'
               icon='settings'
               items={request.service}
               value='service'
             />
-
             <DeviceData request={request} value='device' />
-
             <ServiceHistory request={request} value='history' />
           </Accordion>
 

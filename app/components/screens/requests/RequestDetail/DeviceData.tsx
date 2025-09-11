@@ -3,11 +3,9 @@ import { Text, View } from 'react-native'
 
 import BaseAccordion from '@/components/ui/accordion/BaseAccordion'
 
-import { TypeFeatherIconNames } from '@/types/icon.interface'
-
 type DeviceDataProps = {
   request: any
-  value?:string
+  value?: string
 }
 
 const DeviceData: FC<DeviceDataProps> = ({ request, value }) => {
@@ -28,6 +26,29 @@ const DeviceData: FC<DeviceDataProps> = ({ request, value }) => {
       <View className='flex-row gap-2'>
         <Text>Дата продажи:</Text>
         <Text className='font-bold'> {request.device.date}</Text>
+      </View>
+      <View className='flex-row w-full justify-between border-t border-grayLight pt-3 mt-1'>
+        <View className='flex-row items-center bg-[#E990FF] rounded-lg'>
+          <Text className='px-2'>F1</Text>
+          <Text className='px-2 py-1  bg-white border-2 border-[#E990FF] rounded-lg'>-5</Text>
+        </View>
+        <View className='flex-row items-center bg-[#FFA2A2] rounded-lg'>
+          <Text className='px-2'>F1</Text>
+          <Text className='px-2 py-1  bg-white border-2 border-[#FFA2A2] rounded-lg'>-5</Text>
+        </View>
+        <View className='flex-row items-center bg-[#F8E42E] rounded-lg'>
+          <Text className='px-2'>F1</Text>
+          <Text className='px-2 py-1  bg-white border-2 border-[#F8E42E] rounded-lg'>-5</Text>
+        </View>
+        <View className='flex-row items-center bg-[#36D400] rounded-lg'>
+          <Text className='px-2'>F1</Text>
+          <Text className='px-2 py-1  bg-white border-2 border-[#36D400] rounded-lg'>-5</Text>
+        </View>
+        <View className='flex-row items-center bg-[#4A93FF] rounded-lg'>
+          <Text className='px-2'>F1</Text>
+          <Text className='px-2 py-1  bg-white border-2 border-[#4A93FF] rounded-lg'>-5</Text>
+        </View>
+        
       </View>
     </BaseAccordion>
   )

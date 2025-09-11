@@ -31,7 +31,7 @@ const BaseAccordion: FC<BaseAccordionProps> = ({
   value
 }) => {
   return (
-    <AccordionItem value={value ?? 'default'} className='rounded-2xl px-4'>
+    <AccordionItem value={value ?? 'default'} className='rounded-2xl px-4 py-1'>
       <AccordionTrigger className='pb-3 p-0'>
         {({ isExpanded }: { isExpanded: any }) => {
           return (
@@ -62,9 +62,9 @@ const BaseAccordion: FC<BaseAccordionProps> = ({
           )
         }}
       </AccordionTrigger>
-      <AccordionContent className='p-0 py-3'>
-        <AccordionContentText className='pl-[9px]'>
-          <View className='gap-3 border-l-4 border-primary pl-3'>
+      <AccordionContent className='p-1 py-3'>
+        <AccordionContentText className=''>
+          <View className='gap-3 '>
             {children}
           </View>
         </AccordionContentText>
